@@ -32,7 +32,8 @@ public class Delivery
 	@Column(nullable = false)
 	private Time time;
 
-	
+	@Column(nullable = false)
+	private String status;
 	
 	
 	
@@ -43,19 +44,31 @@ public class Delivery
 
 	}
 
-	public Delivery(int qtyitems, String description, Float boxsize, Date date, Time time) {
+	public Delivery(int qtyitems, String description, Float boxsize, Date date, Time time, String status) {
 		super();
 		this.qtyitems = qtyitems;
 		this.description = description;
 		this.boxsize = boxsize;
 		this.date = date;
 		this.time = time;
+		this.status = status;
 	}
 
+
+	
+	
 	@Override
 	public String toString() {
 		return "Delivery [id=" + id + ", qtyitems=" + qtyitems + ", description=" + description + ", boxsize=" + boxsize
-				+ ", date=" + date + ", time=" + time + "]";
+				+ ", date=" + date + ", time=" + time + ", status=" + status + "]";
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
 	}
 
 	public Integer getId() {

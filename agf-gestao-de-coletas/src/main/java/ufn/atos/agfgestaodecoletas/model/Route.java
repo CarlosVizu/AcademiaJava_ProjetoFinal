@@ -1,17 +1,24 @@
 package ufn.atos.agfgestaodecoletas.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "Route")
 public class Route 
 {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
 	@Column(nullable = false)
@@ -20,9 +27,19 @@ public class Route
 	@Column(nullable = false)
 	private String description;
 	
-	Integer id_person;
-
+	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, targetEntity = PersonNatural.class)
+	@JoinColumn(name = "personnatural_id")
+	private PersonNatural personNatural;
 	
+	@ManyToOne(fetch = FetchType.LAZY,  cascade = CascadeType.ALL, targetEntity = PersonLegal.class)
+	@JoinColumn(name = "personlegal_id")
+	private PersonLegal personLegal;
+	
+	/*
+	 * @OneToMany(mappedBy = "persondeliveryroute", fetch = FetchType.LAZY, cascade
+	 * = CascadeType.ALL, targetEntity = PersonDeliveryRoute.class) private
+	 * PersonDeliveryRoute personDeliveryRoute;
+	 */
 	
 
 	public Route() {
@@ -34,10 +51,6 @@ public class Route
 		this.description = description;
 	}
 
-	@Override
-	public String toString() {
-		return "Route [id=" + id + ", name=" + name + ", description=" + description + ", id_person=" + id_person + "]";
-	}
 
 	public Integer getId() {
 		return id;
@@ -63,13 +76,6 @@ public class Route
 		this.description = description;
 	}
 
-	public Integer getId_person() {
-		return id_person;
-	}
 
-	public void setId_person(Integer id_person) {
-		this.id_person = id_person;
-	}
-	
 	
 }

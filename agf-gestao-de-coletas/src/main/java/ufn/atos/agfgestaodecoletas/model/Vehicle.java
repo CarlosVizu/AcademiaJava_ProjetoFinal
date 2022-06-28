@@ -1,17 +1,26 @@
 package ufn.atos.agfgestaodecoletas.model;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "Vehicle")
 public class Vehicle 
 {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
 	@Column(nullable = false)
@@ -23,33 +32,28 @@ public class Vehicle
 	@Column(nullable = false)
 	private Float volsize;
 	
-	Integer id_delivery;
 	
-	Integer id_driver;
+	@OneToOne(mappedBy = "vehicle", targetEntity = Driver.class)
+	@JoinColumn(name = "driver_id")
+	private Driver driver;
+	
+	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	private List<PersonDeliveryRoute> personDeliveryRoute;
+	
 
-	
-	
-	
-	
 	
 	
 	public Vehicle() {
 
 	}
 
-	public Vehicle(String name, String type, Float volsize, Integer id_driver) {
+	public Vehicle(String name, String type, Float volsize) {
 		super();
 		this.name = name;
 		this.type = type;
 		this.volsize = volsize;
-		this.id_driver = id_driver;
 	}
 
-	@Override
-	public String toString() {
-		return "Vehicle [id=" + id + ", name=" + name + ", type=" + type + ", volsize=" + volsize + ", id_delivery="
-				+ id_delivery + ", id_driver=" + id_driver + "]";
-	}
 
 	public Integer getId() {
 		return id;
@@ -83,24 +87,5 @@ public class Vehicle
 		this.volsize = volsize;
 	}
 
-	public Integer getId_delivery() {
-		return id_delivery;
-	}
-
-	public void setId_delivery(Integer id_delivery) {
-		this.id_delivery = id_delivery;
-	}
-
-	public Integer getId_driver() {
-		return id_driver;
-	}
-
-	public void setId_driver(Integer id_driver) {
-		this.id_driver = id_driver;
-	}
-	
-	
-	
-	
 	
 }

@@ -2,19 +2,27 @@ package ufn.atos.agfgestaodecoletas.model;
 
 import java.sql.Time;
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "Delivery")
 public class Delivery 
 {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
 	@Column(nullable = false)
@@ -35,10 +43,18 @@ public class Delivery
 	@Column(nullable = false)
 	private String status;
 	
+	@ManyToOne(fetch = FetchType.EAGER, targetEntity = PersonNatural.class)
+	@JoinColumn(name = "personnatural_id")
+	private PersonNatural personNatural;
+	
+	@ManyToOne(fetch = FetchType.EAGER, targetEntity = PersonLegal.class)
+	@JoinColumn(name = "personlegal_id")
+	private PersonLegal personLegal;
+	
+	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, targetEntity = PersonDeliveryRoute.class)
+	private PersonDeliveryRoute personDeliveryRoute;
 	
 	
-	
-
 	
 	public Delivery() {
 

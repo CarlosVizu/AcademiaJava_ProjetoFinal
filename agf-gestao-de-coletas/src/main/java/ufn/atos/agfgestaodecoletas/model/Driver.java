@@ -1,42 +1,44 @@
 package ufn.atos.agfgestaodecoletas.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "Driver")
 public class Driver 
 {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
 	@Column(nullable=false)
 	private String name;
-	@Column(nullable=false)
+	@Column(nullable=false, unique = true)
 	private String cnh;
 	
-	@Column
-	Integer id_vehicle;
+	@OneToOne(cascade = CascadeType.ALL, targetEntity = Vehicle.class)
+	@JoinColumn(name = "vehicle_id")
+	private Vehicle vehicle;
 	
 	
 	
 	public Driver() {
 	}
 
-	public Driver(String name, String cnh, Integer id_vehicle) {
+	public Driver(String name, String cnh) {
 		super();
 		this.name = name;
 		this.cnh = cnh;
-		this.id_vehicle = id_vehicle;
 	}
 
-	@Override
-	public String toString() {
-		return "Driver [id=" + id + ", name=" + name + ", cnh=" + cnh + ", id_vehicle=" + id_vehicle + "]";
-	}
+
 
 	public Integer getId() {
 		return id;
@@ -62,15 +64,6 @@ public class Driver
 		this.cnh = cnh;
 	}
 
-	public Integer getId_vehicle() {
-		return id_vehicle;
-	}
-
-	public void setId_vehicle(Integer id_vehicle) {
-		this.id_vehicle = id_vehicle;
-	}
-	
-	
 	
 	
 	

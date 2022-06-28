@@ -1,20 +1,30 @@
 package ufn.atos.agfgestaodecoletas.model;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "PersonNatural")
 public class PersonNatural 
 {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+	
 	@Column(nullable = false)
 	private String name;
-	@Column(nullable = false)
+	@Column(nullable = false, unique = true)
 	private String cpf;
 	@Column(nullable = false)
 	private String address;
@@ -25,20 +35,21 @@ public class PersonNatural
 	@Column
 	private String description;
 	
-	@Column(nullable = false)
-	Integer id_route;
+	@ManyToOne(fetch = FetchType.EAGER, targetEntity = Route.class)
+	@JoinColumn(name = "route_id")
+	private Route route;
 	
-	Integer id_delivery;
-
-
+	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	private List<Delivery> deliveries;
+	
 	
 	public PersonNatural() {
 	}
 	
 	
-
+	
 	public PersonNatural(String name, String cpf, String address, String zipcode, String city, String description,
-			Integer id_route) {
+			Route route) {
 		super();
 		this.name = name;
 		this.cpf = cpf;
@@ -46,16 +57,22 @@ public class PersonNatural
 		this.zipcode = zipcode;
 		this.city = city;
 		this.description = description;
-		this.id_route = id_route;
+		this.route = route;
 	}
+
+
 	
 	
-	
-	@Override
-	public String toString() {
-		return "PersonNatural [id=" + id + ", name=" + name + ", cpf=" + cpf + ", address=" + address + ", zipcode="
-				+ zipcode + ", city=" + city + ", description=" + description + ", id_route=" + id_route
-				+ ", id_delivery=" + id_delivery + "]";
+
+
+	public Route getRoute() {
+		return route;
+	}
+
+
+
+	public void setRoute(Route route) {
+		this.route = route;
 	}
 
 
@@ -116,23 +133,6 @@ public class PersonNatural
 		this.description = description;
 	}
 
-	public Integer getId_delivery() {
-		return id_delivery;
-	}
-
-	public void setId_delivery(Integer id_delivery) {
-		this.id_delivery = id_delivery;
-	}
-
-	public Integer getId_route() {
-		return id_route;
-	}
-
-	public void setId_route(Integer id_route) {
-		this.id_route = id_route;
-	}
-	
-	
 	
 	
 }

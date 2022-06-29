@@ -29,9 +29,11 @@ public class PersonNatural
 	@Column(nullable = false)
 	private String address;
 	@Column(nullable = false)
-	private String zipcode;
+	private String number;
 	@Column(nullable = false)
 	private String city;
+	@Column(nullable = false)
+	private String zipcode;
 	@Column
 	private String description;
 	
@@ -131,6 +133,30 @@ public class PersonNatural
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+
+
+	public String getNumber() {
+		return number;
+	}
+
+
+
+	public void setNumber(String number) {
+		this.number = number;
+	}
+
+
+
+	public List<Delivery> getDeliveries() {
+		return deliveries;
+	}
+
+
+
+	public void setDeliveries(List<Delivery> deliveries) {
+		this.deliveries = deliveries;
 	}
 
 	

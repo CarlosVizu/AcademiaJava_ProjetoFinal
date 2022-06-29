@@ -31,6 +31,9 @@ public class Delivery
 	@Column
 	private String description;
 	
+	@Column
+	private String closingdescription;
+	
 	@Column(nullable = false)
 	private Float boxsize;
 	
@@ -39,7 +42,10 @@ public class Delivery
 	
 	@Column(nullable = false)
 	private Time time;
-
+	
+	@Column(nullable = false)
+	private boolean daily = false;
+	
 	@Column(nullable = false)
 	private String status;
 	
@@ -133,6 +139,22 @@ public class Delivery
 
 	public void setTime(Time time) {
 		this.time = time;
+	}
+
+	public String getClosingdescription() {
+		return closingdescription;
+	}
+
+	public void setClosingdescription(String closingdescription) {
+		this.closingdescription = closingdescription;
+	}
+
+	public boolean isDaily() {
+		return daily;
+	}
+
+	public void setDaily(boolean daily) {
+		this.daily = daily;
 	}
 	
 	

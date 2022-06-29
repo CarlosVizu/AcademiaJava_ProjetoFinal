@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -30,6 +31,7 @@ public class PersonNaturalController
 	@GetMapping("/list")
 	public String listPFisica(Model model) {
 		List<PersonNatural> persons = service.listAll();
+		model.addAttribute("personList", persons);
 		return "listpessoafisica";
 	}
 	
@@ -47,7 +49,7 @@ public class PersonNaturalController
 	
 	@GetMapping("/delete/{id}")
 	public String deletePFisica(@PathVariable (value="id") Integer id) {
-		service.delete(id);
+		data.deleteById(id);
 		return "redirect:/clientefisico/list";
 	}
 	
@@ -59,16 +61,17 @@ public class PersonNaturalController
 	}
 	
 	@PostMapping("/update")
-	public @ResponseBody String updatePFisica(@RequestParam Integer id,@RequestParam String cpf, @RequestParam String name,
-			@RequestParam String address, @RequestParam String zipcode, @RequestParam String city,
-			@RequestParam String description, @RequestParam Route route) {
-		
+	public String updatePFisica(@RequestParam Integer id, @RequestParam String cpf, @RequestParam String name,
+			@RequestParam String address, @RequestParam String zipcode, @RequestParam String number,
+			@RequestParam String city, @RequestParam String description, @RequestParam Route route) {
+
 		PersonNatural person = data.findById(id).get();
 		
 		person.setName(name);
 		person.setCpf(cpf);
 		person.setAddress(address);
 		person.setZipcode(zipcode);
+		person.setNumber(number);
 		person.setCity(city);
 		person.setDescription(description);
 		person.setRoute(route);

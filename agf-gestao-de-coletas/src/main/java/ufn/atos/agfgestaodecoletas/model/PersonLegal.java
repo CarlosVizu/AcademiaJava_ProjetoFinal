@@ -16,8 +16,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "PersonLegal")
-public class PersonLegal 
-{
+public class PersonLegal {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
@@ -28,25 +27,25 @@ public class PersonLegal
 	@Column(nullable = false)
 	private String address;
 	@Column(nullable = false)
-	private String zipcode;
-	@Column(nullable = false)
 	private String city;
+	@Column(nullable = false)
+	private String number;
+	@Column(nullable = false)
+	private String zipcode;
+
 	@Column
 	private String description;
-	
+
 	@ManyToOne(fetch = FetchType.EAGER, targetEntity = Route.class)
 	@JoinColumn(name = "route_id")
 	private Route route;
-	
+
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<Delivery> deliveries;
 
-	
 	public PersonLegal() {
 	}
-	
-	
-	
+
 	public PersonLegal(String name, String cnpj, String address, String zipcode, String city, String description,
 			Route route) {
 		super();
@@ -58,11 +57,6 @@ public class PersonLegal
 		this.description = description;
 		this.route = route;
 	}
-	
-	
-	
-
-
 
 	public Integer getId() {
 		return id;
@@ -120,8 +114,28 @@ public class PersonLegal
 		this.description = description;
 	}
 
+	public String getNumber() {
+		return number;
+	}
 
-	
-	
-	
+	public void setNumber(String number) {
+		this.number = number;
+	}
+
+	public Route getRoute() {
+		return route;
+	}
+
+	public void setRoute(Route route) {
+		this.route = route;
+	}
+
+	public List<Delivery> getDeliveries() {
+		return deliveries;
+	}
+
+	public void setDeliveries(List<Delivery> deliveries) {
+		this.deliveries = deliveries;
+	}
+
 }

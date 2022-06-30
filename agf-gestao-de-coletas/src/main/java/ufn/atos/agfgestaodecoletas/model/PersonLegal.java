@@ -25,11 +25,21 @@ public class PersonLegal {
 	@Column(nullable = false, unique = true)
 	private String cnpj;
 	@Column(nullable = false)
+	private String email;
+	@Column(nullable = false)
 	private String address;
 	@Column(nullable = false)
 	private String city;
 	@Column(nullable = false)
 	private String number;
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
 	@Column(nullable = false)
 	private String zipcode;
 

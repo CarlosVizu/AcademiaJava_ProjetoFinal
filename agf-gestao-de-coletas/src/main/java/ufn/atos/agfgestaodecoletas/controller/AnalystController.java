@@ -69,6 +69,6 @@ public class AnalystController
 
 		
 		data.save(analista);
-		return "redirect:analista/list";
+		return "redirect:/analista/list";
 	}
 }

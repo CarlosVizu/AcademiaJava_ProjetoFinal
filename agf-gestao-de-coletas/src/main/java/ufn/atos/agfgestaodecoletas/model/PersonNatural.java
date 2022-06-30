@@ -27,6 +27,8 @@ public class PersonNatural
 	@Column(nullable = false, unique = true)
 	private String cpf;
 	@Column(nullable = false)
+	private String email;
+	@Column(nullable = false)
 	private String address;
 	@Column(nullable = false)
 	private String number;
@@ -64,7 +66,14 @@ public class PersonNatural
 
 
 	
-	
+	public String getEmail() {
+		return email;
+	}
+
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
 
 
 	public Route getRoute() {

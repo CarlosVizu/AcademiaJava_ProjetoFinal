@@ -59,7 +59,7 @@ public class PersonLegalController
 	}
 	
 	@PostMapping("/update")
-	public String updatePJuridica(@RequestParam Integer id, @RequestParam String cnpj, @RequestParam String name,
+	public String updatePJuridica(@RequestParam Integer id, @RequestParam String cnpj, @RequestParam String email, @RequestParam String name,
 			@RequestParam String number, @RequestParam String address, @RequestParam String zipcode,
 			@RequestParam String city, @RequestParam String description, @RequestParam Route route) {
 		

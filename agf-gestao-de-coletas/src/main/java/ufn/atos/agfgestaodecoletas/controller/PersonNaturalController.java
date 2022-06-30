@@ -62,7 +62,7 @@ public class PersonNaturalController
 	
 	@PostMapping("/update")
 	public String updatePFisica(@RequestParam Integer id, @RequestParam String cpf, @RequestParam String name,
-			@RequestParam String address, @RequestParam String zipcode, @RequestParam String number,
+			@RequestParam String address, @RequestParam String zipcode,@RequestParam String email,  @RequestParam String number,
 			@RequestParam String city, @RequestParam String description, @RequestParam Route route) {
 
 		PersonNatural person = data.findById(id).get();
@@ -70,7 +70,7 @@ public class PersonNaturalController
 		person.setName(name);
 		person.setCpf(cpf);
 		person.setAddress(address);
-		person.setZipcode(zipcode);
+		person.setEmail(email);		person.setZipcode(zipcode);
 		person.setNumber(number);
 		person.setCity(city);
 		person.setDescription(description);

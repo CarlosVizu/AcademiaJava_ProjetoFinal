@@ -35,6 +35,8 @@ public class PersonNatural
 	@Column(nullable = false)
 	private String city;
 	@Column(nullable = false)
+	private String state;
+	@Column(nullable = false)
 	private String zipcode;
 	@Column
 	private String description;
@@ -66,6 +68,19 @@ public class PersonNatural
 
 
 	
+	
+	public String getState() {
+		return state;
+	}
+
+
+
+	public void setState(String state) {
+		this.state = state;
+	}
+
+
+
 	public String getEmail() {
 		return email;
 	}

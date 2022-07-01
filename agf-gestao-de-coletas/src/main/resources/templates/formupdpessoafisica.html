@@ -1,223 +1,467 @@
 <!DOCTYPE html>
 <html lang="pt" xmlns:th="http://www.thymeleaf.org">
+
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <title>Jusers - Gestão de Usuários</title>
+<title>Gestão de Coleta</title>
 
-    <!-- Bootstrap CSS CDN -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
-    <!-- Our Custom CSS -->
-    <link rel="stylesheet" href="style.css">
 
-    <!-- Font Awesome JS -->
-    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
-    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
+	integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4"
+	crossorigin="anonymous">
+<!-- Our Custom CSS -->
+
+<!-- Font Awesome JS -->
+
+
+<script defer
+	src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js"
+	integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ"
+	crossorigin="anonymous"></script>
+<script defer
+	src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js"
+	integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY"
+	crossorigin="anonymous"></script>
+
+<!-- jQuery CDN - Slim version (=without AJAX) -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+	integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+	crossorigin="anonymous"></script>
+<!-- Popper.JS -->
+
+
+<!-- Bootstrap JS -->
+<script
+	src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"
+	integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm"
+	crossorigin="anonymous"></script>
+
+
+
+<!-- jQuery CDN - Slim version (=without AJAX) -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+	integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+	crossorigin="anonymous"></script>
+<!-- Popper.JS -->
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"
+	integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ"
+	crossorigin="anonymous"></script>
+<!-- Bootstrap JS -->
+
+
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js">
+</script>
+
 
 <style>
-.wrapper {
-    display: flex;
-    align-items: stretch;
-}
+@charset "UTF-8";
 
-#sidebar {
-    min-width: 250px;
-    max-width: 250px;
-    min-height: 100vh;
-}
-#sidebar.active {
-    margin-left: -250px;
-}
+@import
+	"https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
+	
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css");
 
-a[data-toggle="collapse"] {
-    position: relative;
-}
 
-.dropdown-toggle::after {
-    display: block;
-    position: absolute;
-    top: 50%;
-    right: 20px;
-    transform: translateY(-50%);
-}
 
-@media (max-width: 768px) {
-    #sidebar {
-        margin-left: -250px;
-    }
-    #sidebar.active {
-        margin-left: 0;
-    }
-}
+@import url("https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css");
 
-@import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
+@import url("https://use.fontawesome.com/releases/v5.0.13/js/solid.js");
+@import url("https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js");
+@import url("https://code.jquery.com/jquery-3.3.1.slim.min.js");
+@import url("https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js");
+@import url("https://code.jquery.com/jquery-3.3.1.slim.min.js");
+@import url("https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js");
+
 
 
 body {
-    font-family: 'Poppins', sans-serif;
-    background: #fafafa;
+	font-family: 'Poppins', sans-serif;
+	background: #e7e7e7;
 }
 
 p {
-    font-family: 'Poppins', sans-serif;
-    font-size: 1.1em;
-    font-weight: 300;
-    line-height: 1.7em;
-    color: #999;
+	font-family: 'Poppins', sans-serif;
+	font-size: 1.1em;
+	font-weight: 300;
+	line-height: 1.7em;
+	color: #999;
 }
 
 a, a:hover, a:focus {
-    color: inherit;
-    text-decoration: none;
-    transition: all 0.3s;
+	color: inherit;
+	text-decoration: none;
+	transition: all 0.3s;
 }
 
 #sidebar {
-    /* don't forget to add all the previously mentioned styles here too */
-    background: #7386D5;
-    color: #fff;
-    transition: all 0.3s;
+	background: #2D3E40;
+	color: #E4F2E7;
+	transition: all 0.3s;
+	border-bottom-right-radius: 20px;
 }
 
 #sidebar .sidebar-header {
-    padding: 20px;
-    background: #6d7fcc;
+	padding: 20px;
+	background: #2D3E40;
 }
 
 #sidebar ul.components {
-    padding: 20px 0;
-    border-bottom: 1px solid #47748b;
+	padding: 20px 0;
+	border-bottom: 1px solid #E4F2E7;
 }
 
 #sidebar ul p {
-    color: #fff;
-    padding: 10px;
+	color: #E4F2E7;
+	padding: 10px;
 }
 
 #sidebar ul li a {
-    padding: 10px;
-    font-size: 1.1em;
-    display: block;
+	padding: 10px;
+	font-size: 1.1em;
+	display: block;
 }
+
 #sidebar ul li a:hover {
-    color: #7386D5;
-    background: #fff;
+	color: #E4F2E7;
+	background: #387373;
 }
 
-#sidebar ul li.active > a, a[aria-expanded="true"] {
-    color: #fff;
-    background: #6d7fcc;
+#sidebar ul li.active>a, a[aria-expanded="true"] {
+	color: #E4F2E7;
+	background: #2D3E40;
 }
+
 ul ul a {
-    font-size: 0.9em !important;
-    padding-left: 30px !important;
-    background: #6d7fcc;
+	font-size: 0.9em !important;
+	padding-left: 30px !important;
+	background: #2D3E40;
 }
 
-	</style>
+.wrapper {
+	display: flex;
+	align-items: stretch;
+}
+
+#sidebar {
+	min-width: 250px;
+	max-width: 250px;
+	min-height: 100vh;
+}
+
+#sidebar.active {
+	margin-left: -250px;
+}
+
+a[data-toggle="collapse"] {
+	position: relative;
+}
+
+.dropdown-toggle::after {
+	display: block;
+	position: absolute;
+	top: 50%;
+	right: 20px;
+	transform: translateY(-50%);
+}
+
+@media ( max-width : 768px) {
+	#sidebar {
+		margin-left: -250px;
+	}
+	#sidebar.active {
+		margin-left: 0;
+	}
+}
+
+#navbar {
+	overflow: hidden;
+	background-color: #333;
+}
+
+/* Navbar links */
+#navbar a {
+	float: left;
+	display: block;
+	color: #f2f2f2;
+	text-align: center;
+	padding: 14px;
+	text-decoration: none;
+}
+
+/* Page content */
+.content {
+	padding: 16px;
+}
+
+/* The sticky class is added to the navbar with JS when it reaches its scroll position */
+.sticky {
+	position: fixed;
+	top: 0;
+	width: 100%;
+}
+
+/* Add some top padding to the page content to prevent sudden quick movement (as the navigation bar gets a new position at the top of the page (position:fixed and top:0) */
+.sticky+.content {
+	padding-top: 60px;
+}
+
+.colorprimary {
+	color: rgba(45, 62, 64, 1);
+}
+
+.colorsecondary {
+	color: rgba(56, 115, 115, 1);
+}
+
+.colorthird {
+	color: rgba(147, 191, 183, 1);
+}
+
+.colorfourth {
+	color: rgba(151, 166, 160, 1);
+}
+
+.colorfifth {
+	color: rgba(228, 242, 231, 1);
+}
+
+</style>
+
+</head>
+
 
 <body>
+
+	<!--  Navbar/sidebar expandível -->
 	<div class="wrapper">
 		<!-- Sidebar -->
-		<nav id="sidebar" class="text-white bg-dark">
-			<div class="sidebar-header text-white bg-dark">
-				<h3 align="center">AGF</h3>
-				<h5 align="center">Teste</h5>
+		<nav id="sidebar">
+			<div class="sidebar-header">
+				<h1>
+					<i class="bi bi-truck"></i>
+				</h1>
+				<h5>Gestão de Coletas</h5>
 			</div>
 
 			<ul class="list-unstyled components">
-				<li><a href="/clientefisico/index" class="text-white bg-dark">Home</a></li>
-				<li><a href="/clientefisico/new" class="text-white bg-dark">Novo
-						Cliente Fisico</a></li>
-				<li><a href="/clientefisico/list" class="text-white bg-dark">Lista
-						de clientes físicos</a></li>
-				<li><a href="/clientefisico/login" class="text-white bg-dark">Login</a></li>
+
+
+				<li><a href="/gestao/home"> <i
+						class="bi bi-house-door-fill"></i><span></span> &nbsp &nbsp Home
+				</a></li>
+				<li><a href="#"> <i class="bi bi-calendar-plus"></i> &nbsp
+						&nbsp Cadastrar Coleta
+				</a></li>
+				<li><a href="#"><i class="bi bi-layout-text-window-reverse"></i>
+						&nbsp &nbsp Gerenciar Coletas</a></li>
+				<li><a href="#cadastroSubmenu" data-toggle="collapse"
+					aria-expanded="false" class="dropdown-toggle"> <i
+						class="bi bi-plus-square"></i>&nbsp &nbsp Cadastrar
+				</a>
+					<ul class="collapse list-unstyled" id="cadastroSubmenu">
+						<li><a href="/clientefisico/new">Cliente Pessoa Fisíca</a></li>
+						<li><a href="/clientejuridico/new">Cliente Pessoa
+								Jurídica</a></li>
+						<li><a href="/analista/new">Analista</a></li>
+						<li><a href="/rotas/new">Rota</a></li>
+						<li><a href="/veiculos/new">Veículo</a></li>
+						<li><a href="/motoristas/new">Motorista</a></li>
+						<li><a href="/coletas/new">Coleta</a></li>
+					</ul></li>
+				<li><a href="#pageSubmenu" data-toggle="collapse"
+					aria-expanded="false" class="dropdown-toggle"> <i
+						class="bi bi-list-task"></i>&nbsp &nbsp Visualizar
+				</a>
+					<ul class="collapse list-unstyled" id="pageSubmenu">
+						<li><a href="/clientefisico/list">Cliente Fisico</a></li>
+						<li><a href="/clientejuridico/list">Cliente Juridico</a></li>
+						<li><a href="/analista/list">Analista</a></li>
+						<li><a href="/rotas/list">Rota</a></li>
+						<li><a href="/veiculos/list">Veículo</a></li>
+						<li><a href="/motoristas/list">Motorista</a></li>
+						<li><a href="/coletas/list">Coleta</a></li>
+
+					</ul></li>
+
+				<li></li>
+				<li></li>
 			</ul>
 
 		</nav>
-		<!-- Page Content -->
-		<div id="content" class="form-control justify-content-center">
 
+		<!-- Botão de expandir sidebar via javascript -->
+		<div id="align-content-center">
+			<nav class="navbar navbar-expand-sm">
+				<ul class="navbar-nav">
+					<li class="nav-item"><a>
+							<button type="button" id="sidebarCollapse" class="btn btn-info">
+								<i class="fas fa-align-left"></i> <span></span>
+							</button>
+					</a></li>
+					<li class="nav-item justify-content"></li>
+
+				</ul>
+			</nav>
+		
+		</div>
+		<br>
+		<br>
+		
+		<!--  a partir daqui vai a configuração da página de acordo com a função. -->
+
+
+		<div class="h-100 w-50 p-3 mx-auto mt-2 rounded"
+			style="background-color: #97A6A0;">
+
+			<br>
+
+			<div class="text-white bg-dark rounded">
+				<h5 align="center">
+					Atualizar - Cliente Físico
+					</h5>
+			</div>
 			<form action="#" th:action="@{/clientefisico/update}"
-				th:object="${personnatural}" method="post" class="form-control">
+				th:object="${personnatural}" method="post">
 
-				<div class="form-control text-white bg-dark">
-					<h4 align="center">Atualização de cliente:</h4>
-
-				</div>
-				<input type="hidden" th:field="*{id}" />
-				<div class="form-control">
-
-					<div>Nome</div>
-					<input type="text" th:field="*{name}" class="form-control">
-				</div>
-				<div class="form-control">
-
-					<div>CPF</div>
-					<div>
-						<input type="text" th:field="*{cpf}" class="form-control">
-					</div>
-				</div>
-
-				<div class="form-control">
-
-					<div>Endereço</div>
-					<div>
-						<input type="text" th:field="*{address}" class="form-control">
-					</div>
-				</div>
-
-				<div class="form-control">
-
-				<div>CEP</div>
-					<div>
-						<input type="text" th:field="*{zipcode}" class="form-control">
-					</div>
-				</div>
-				
-				<div class="form-control">
-
-				<div>Cidade</div>
-					<div>
-						<input type="text" th:field="*{city}" class="form-control">
-					</div>
-				</div>
-
-				<div class="form-control">
-
-				<div>Rota</div>
-					<div>
-						<input type="text" th:field="*{route}" class="form-control">
-				</div>
-				
-				</div>
-				
-				<div class="form-control">
-
-					<div>Descrição</div>
-					<div>
-						<input type="text" th:field="*{description}" class="form-control">
-					</div>
-				</div>
+				<input type="hidden" th:field="*{id}" /> <br>
 				
 				<div>
+					<label>Nome</label> <input type="text" class="form-control"
+						th:field="*{name}" placeholder="Nome completo">
+				</div>
+				<br>
+
+				<div class="row">
+					<div class="col">
+						<label>CPF</label> <input type="text" th:field="*{cpf}"
+							maxlength="11" class="form-control" placeholder="000.000.000-00"
+							onkeypress="$(this).mask('000.000.000-00')">
+					</div>
+
+
+					<div class="col">
+						<div>
+							<label>E-mail</label> <input type="email" class="form-control"
+								th:field="*{email}" placeholder = "email@dominio.com">
+						</div>
+
+					</div>
+				</div>
+				<br><br><br>
+				<div class="row">
+					<div class="col-9">
+						<label>Endereço de Coleta</label> <input type="text"
+							class="form-control" th:field="*{address}"
+							placeholder="Rua / Avenida / Logradouro">
+					</div>
+					<div class="col">
+						<label>Número</label> <input type="text" th:field="*{number}"
+							class="form-control" placeholder="n°">
+					</div>
+				</div>
+				<br>
+				
+				<div class="row">
+
+					<div class="col-5">
+						<div>
+							<label>Cidade</label> <input type="text" class="form-control"
+								th:field="*{city}" placeholder="Cidade">
+						</div>
+
+					</div>
+					<div class="col-3">
+						<div>
+							<label>Estado</label>
+								<select type="text" th:field="*{state}" class="form-control">
+								<option value="AC">Acre</option>
+								<option value="AL">Alagoas</option>
+								<option value="AP">Amapá</option>
+								<option value="AM">Amazonas</option>
+								<option value="BA">Bahia</option>
+								<option value="CE">Ceará</option>
+								<option value="DF">Distrito Federal</option>
+								<option value="ES">Espírito Santo</option>
+								<option value="GO">Goiás</option>
+								<option value="MA">Maranhão</option>
+								<option value="MT">Mato Grosso</option>
+								<option value="MS">Mato Grosso do Sul</option>
+								<option value="MG">Minas Gerais</option>
+								<option value="PA">Pará</option>
+								<option value="PB">Paraíba</option>
+								<option value="PR" selected>Paraná</option>
+								<option value="PE">Pernambuco</option>
+								<option value="PI">Piauí</option>
+								<option value="RJ">Rio de Janeiro</option>
+								<option value="RN">Rio Grande do Norte</option>
+								<option value="RS">Rio Grande do Sul</option>
+								<option value="RO">Rondônia</option>
+								<option value="RR">Roraima</option>
+								<option value="SC">Santa Catarina</option>
+								<option value="SP">São Paulo</option>
+								<option value="SE">Sergipe</option>
+								<option value="TO">Tocantins</option>
+								<option value="EX">Estrangeiro</option>
+							</select>
+						</div>
+
+					</div>
+					<div class="col">
+						<div>
+							<label>CEP</label> <input type="text" class="form-control"
+								th:field="*{zipcode}" placeholder="00000-000"
+								maxlenght="8" onkeypress="$(this).mask('00000-000')">
+						</div>
+
+					</div>
+				</div>
+				<br>
+				<div class="row">
+					<div class="col-5">
+						<label>Rota de Coleta</label> <select class="form-control" id="dropDownList">
+							<option th:each="route: ${allroutes}"
+							th:text="${route.name}" th:value="${route.id}"></option>
+						</select>
+					</div>
+				</div>
+				<br>
+				<div>
+					<div class="form-floating">
+						<label for="floatingTextarea2">Descrição (Opcional)</label>
+						<textarea class="form-control" id="floatingTextarea2" style="height: 100px"
+						th:field="*{description}" maxlength="250"></textarea>
+					</div>
+				</div>
+				<br> 
+				<div align="center">
 					<input type="submit" class="btn btn-primary" value="Salvar" /> <input
 						type="reset" class="btn btn-secondary" value="Limpar" />
 				</div>
 			</form>
 		</div>
+	</div>
+	
+	
 
 
 
+ -->
 
-	<!-- jQuery CDN - Slim version (=without AJAX) -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <!-- Popper.JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
-    <!-- Bootstrap JS -->
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+	<script>
+		$(document).ready(function() {
+
+			$('#sidebarCollapse').on('click', function() {
+				$('#sidebar').toggleClass('active');
+			});
+
+		});
+	</script>
 
 </body>
 </html>

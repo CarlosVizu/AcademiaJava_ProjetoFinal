@@ -12,6 +12,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "Route")
 public class Route 
@@ -24,7 +26,7 @@ public class Route
 	@Column(nullable = false)
 	private String name;
 	
-	@Column(nullable = false)
+	@Column
 	private String description;
 	
 	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, targetEntity = PersonNatural.class)

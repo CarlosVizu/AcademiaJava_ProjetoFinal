@@ -32,14 +32,8 @@ public class PersonLegal {
 	private String city;
 	@Column(nullable = false)
 	private String number;
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
+	@Column(nullable = false)
+	private String state;
 	@Column(nullable = false)
 	private String zipcode;
 
@@ -52,6 +46,30 @@ public class PersonLegal {
 
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<Delivery> deliveries;
+	
+	
+	
+	
+	
+	
+	
+	public String getState() {
+		return state;
+	}
+
+	public void setState(String state) {
+		this.state = state;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+
 
 	public PersonLegal() {
 	}

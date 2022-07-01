@@ -320,14 +320,15 @@ a[data-toggle="collapse"] {
 			
 			<div class="text-white bg-dark rounded">
 				<h5 align="center">
-					cadastrar novo analista
-					</h4>
+					Cadastrar Novo Analista
+					</h5>
 			</div>
 			<form action="#" th:action="@{/analista/new}" th:object="${analista}"
 				method="post">
 
 
 				<br> <br>
+				<div>
 				<div>
 					<label>Nome</label> <input type="text" class="form-control"
 						th:field="*{name}" placeholder="Nome completo">
@@ -345,7 +346,7 @@ a[data-toggle="collapse"] {
 					</div>
 
 					<div class="col form-select">
-						<label>Role</label>
+						<label>Função</label>
 						<div>
 							<select type="text" th:field="*{role}" class="form-control">
 								<option value="USER">USER</option>
@@ -357,11 +358,14 @@ a[data-toggle="collapse"] {
 				</div>
 
 
+				</div>
+				<br>
 				<br>
 				<div align="center">
 					<input type="submit" class="btn btn-primary" value="Salvar" /> <input
 						type="reset" class="btn btn-secondary" value="Limpar" />
 				</div>
+				
 			</form>
 		</div>
 	</div>

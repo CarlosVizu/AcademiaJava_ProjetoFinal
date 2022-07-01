@@ -15,6 +15,7 @@ import ufn.atos.agfgestaodecoletas.model.PersonLegal;
 import ufn.atos.agfgestaodecoletas.model.Route;
 import ufn.atos.agfgestaodecoletas.repository.PersonLegalRepository;
 import ufn.atos.agfgestaodecoletas.service.PersonLegalService;
+import ufn.atos.agfgestaodecoletas.service.RouteService;
 
 @Controller
 @RequestMapping(("/clientejuridico"))
@@ -22,9 +23,10 @@ public class PersonLegalController
 {
 	@Autowired
 	private PersonLegalRepository data;
-	
 	@Autowired
 	private PersonLegalService service;
+	@Autowired
+	private RouteService serviceRoute;
 	
 	@GetMapping("/list")
 	public String listPJuridica(Model model) {
@@ -36,6 +38,7 @@ public class PersonLegalController
 	@GetMapping("/new")
 	public String formPJuridica(Model model) {
 		model.addAttribute("personLegal", new PersonLegal());
+		model.addAttribute("allroutes", serviceRoute.listAll());
 		return "formnewpessoajuridica";
 	}
 	
@@ -55,13 +58,15 @@ public class PersonLegalController
 	public String formUpdatePJuridica(@PathVariable (value="id") Integer id, Model model) {
 		PersonLegal person = data.getById(id);
 		model.addAttribute("personLegal", person);
+		model.addAttribute("allroutes", serviceRoute.listAll());
 		return "formupdpessoajuridica";
 	}
 	
 	@PostMapping("/update")
 	public String updatePJuridica(@RequestParam Integer id, @RequestParam String cnpj, @RequestParam String email, @RequestParam String name,
 			@RequestParam String number, @RequestParam String address, @RequestParam String zipcode,
-			@RequestParam String city, @RequestParam String description, @RequestParam Route route) {
+			@RequestParam String city, @RequestParam String description, @RequestParam Route route
+			, @RequestParam String state) {
 		
 		PersonLegal person = data.findById(id).get();
 		
@@ -69,9 +74,11 @@ public class PersonLegalController
 		person.setName(name);
 		person.setCnpj(cnpj);
 		person.setAddress(address);
+		person.setEmail(email);		
 		person.setZipcode(zipcode);
 		person.setCity(city);
 		person.setNumber(number);
+		person.setState(state);
 		person.setDescription(description);
 		person.setRoute(route);
 		

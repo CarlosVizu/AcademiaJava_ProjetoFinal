@@ -323,25 +323,25 @@ a[data-toggle="collapse"] {
 
 			<div class="text-white bg-dark rounded">
 				<h5 align="center">
-					Cadastrar Novo - Cliente Físico
+					Atualizar - Cliente Jurídico
 					</h5>
 			</div>
-			<form action="#" th:action="@{/clientefisico/new}"
-				th:object="${personnatural}" method="post">
+			<form action="#" th:action="@{/clientejuridico/update}"
+				th:object="${personLegal}" method="post">
 
 				<input type="hidden" th:field="*{id}" /> <br>
 				
 				<div>
 					<label>Nome</label> <input type="text" class="form-control"
-						th:field="*{name}" placeholder="Nome completo">
+						th:field="*{name}" placeholder="Nome ou Razão Social da empresa">
 				</div>
 				<br>
 
 				<div class="row">
 					<div class="col">
-						<label>CPF</label> <input type="text" th:field="*{cpf}"
-							maxlength="11" class="form-control" placeholder="000.000.000-00"
-							onkeypress="$(this).mask('000.000.000-00')">
+						<label>CNPJ</label> <input type="text" th:field="*{cnpj}"
+							maxlength="14" class="form-control" placeholder="00.000.000/0000-00"
+							onkeypress="$(this).mask('00.000.000/0000-00')">
 					</div>
 
 
@@ -425,7 +425,6 @@ a[data-toggle="collapse"] {
 				<div class="row">
 					<div class="col-5">
 						<label>Rota de Coleta</label> <select class="form-control" id="dropDownList">
-							<option value="">Selecione a rota</option>
 							<option th:each="route: ${allroutes}"
 							th:text="${route.name}" th:value="${route.id}"></option>
 						</select>
@@ -436,8 +435,7 @@ a[data-toggle="collapse"] {
 					<div class="form-floating">
 						<label for="floatingTextarea2">Descrição (Opcional)</label>
 						<textarea class="form-control" id="floatingTextarea2" style="height: 100px"
-						th:field="*{description}" maxlength="250" 
-						placeholder="Digite observações ou comentários sobre o cliente."></textarea>
+						th:field="*{description}" maxlength="250"></textarea>
 					</div>
 				</div>
 				<br> 
@@ -448,9 +446,12 @@ a[data-toggle="collapse"] {
 			</form>
 		</div>
 	</div>
+	
+	
 
 
-		<!-- TÉRMINO DA CONFIGURAÇÃO DA PÁGINA, abaixo segue o script de expandir a sidebar -->
+
+ -->
 
 	<script>
 		$(document).ready(function() {

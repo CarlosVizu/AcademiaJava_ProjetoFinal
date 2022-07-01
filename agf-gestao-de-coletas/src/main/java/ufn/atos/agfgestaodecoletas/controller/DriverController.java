@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import ufn.atos.agfgestaodecoletas.model.Driver;
 import ufn.atos.agfgestaodecoletas.repository.DriverRepository;
 import ufn.atos.agfgestaodecoletas.service.DriverService;
+import ufn.atos.agfgestaodecoletas.service.VehicleService;
 
 @Controller
 @RequestMapping(("/motoristas"))
@@ -21,9 +22,10 @@ public class DriverController
 {
 	@Autowired
 	private DriverRepository data;
-	
 	@Autowired
 	private DriverService service;
+	@Autowired
+	private VehicleService serviceVehicle;
 	
 	@GetMapping("/list")
 	public String listMotorista(Model model) {
@@ -35,6 +37,7 @@ public class DriverController
 	@GetMapping("/new")
 	public String formMotorista(Model model) {
 		model.addAttribute("motorista", new Driver());
+		model.addAttribute("allvehicles", serviceVehicle.listAll());
 		return "formnewmotorista";
 	}
 	
@@ -54,6 +57,7 @@ public class DriverController
 	public String formUpdateMotorista(@PathVariable (value="id") Integer id, Model model) {
 		Driver motorista = data.getById(id);
 		model.addAttribute("motorista", motorista);
+		model.addAttribute("allvehicles", serviceVehicle.listAll());
 		return "formupdmotorista";
 	}
 	

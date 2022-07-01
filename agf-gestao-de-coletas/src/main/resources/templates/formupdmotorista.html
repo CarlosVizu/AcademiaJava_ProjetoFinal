@@ -9,14 +9,13 @@
 <title>Gestão de Coleta</title>
 
 
+<link rel="stylesheet" href="style.css">
+
+
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
 	integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4"
 	crossorigin="anonymous">
-<!-- Our Custom CSS -->
-
-<!-- Font Awesome JS -->
-
 
 <script defer
 	src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js"
@@ -31,16 +30,12 @@
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
 	integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
 	crossorigin="anonymous"></script>
-<!-- Popper.JS -->
-
 
 <!-- Bootstrap JS -->
 <script
 	src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"
 	integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm"
 	crossorigin="anonymous"></script>
-
-
 
 <!-- jQuery CDN - Slim version (=without AJAX) -->
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
@@ -53,11 +48,12 @@
 	crossorigin="anonymous"></script>
 <!-- Bootstrap JS -->
 
-
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js">
+	
 </script>
 
+<link href="css/style.css" rel="stylesheet">
 
 <style>
 @charset "UTF-8";
@@ -238,7 +234,7 @@ a[data-toggle="collapse"] {
 
 <body>
 
-	<!--  Navbar/sidebar expandível -->
+
 	<div class="wrapper">
 		<!-- Sidebar -->
 		<nav id="sidebar">
@@ -295,7 +291,7 @@ a[data-toggle="collapse"] {
 
 		</nav>
 
-		<!-- Botão de expandir sidebar via javascript -->
+		<!-- Page Content -->
 		<div id="align-content-center">
 			<nav class="navbar navbar-expand-sm">
 				<ul class="navbar-nav">
@@ -308,26 +304,21 @@ a[data-toggle="collapse"] {
 
 				</ul>
 			</nav>
-		
 		</div>
 		<br>
-		<br>
-		
-		<!--  a partir daqui vai a configuração da página de acordo com a função. -->
 
-
-		<div class="h-100 w-50 p-3 mx-auto mt-2 rounded"
+		<div class="h-100 w-50 p-3 mx-auto mt-5 rounded"
 			style="background-color: #97A6A0;">
 
 			<br>
 
 			<div class="text-white bg-dark rounded">
 				<h5 align="center">
-					Cadastrar Novo - Cliente Físico
+					Editar - Motorista
 					</h5>
 			</div>
-			<form action="#" th:action="@{/clientefisico/new}"
-				th:object="${personnatural}" method="post">
+			<form action="#" th:action="@{/motoristas/new}"
+				th:object="${motorista}" method="post">
 
 				<input type="hidden" th:field="*{id}" /> <br>
 				
@@ -339,107 +330,24 @@ a[data-toggle="collapse"] {
 
 				<div class="row">
 					<div class="col">
-						<label>CPF</label> <input type="text" th:field="*{cpf}"
-							maxlength="11" class="form-control" placeholder="000.000.000-00"
-							onkeypress="$(this).mask('000.000.000-00')">
+						<label>CNH</label> <input type="text" th:field="*{cnh}"
+							maxlength="11" class="form-control" placeholder="00000000000"
+							onkeypress="$(this).mask('00000000000')">
 					</div>
 
-
-					<div class="col">
-						<div>
-							<label>E-mail</label> <input type="email" class="form-control"
-								th:field="*{email}" placeholder = "email@dominio.com">
-						</div>
-
-					</div>
 				</div>
-				<br><br><br>
-				<div class="row">
-					<div class="col-9">
-						<label>Endereço de Coleta</label> <input type="text"
-							class="form-control" th:field="*{address}"
-							placeholder="Rua / Avenida / Logradouro">
-					</div>
-					<div class="col">
-						<label>Número</label> <input type="text" th:field="*{number}"
-							class="form-control" placeholder="n°">
-					</div>
-				</div>
-				<br>
-				
-				<div class="row">
 
-					<div class="col-5">
-						<div>
-							<label>Cidade</label> <input type="text" class="form-control"
-								th:field="*{city}" placeholder="Cidade">
-						</div>
-
-					</div>
-					<div class="col-3">
-						<div>
-							<label>Estado</label>
-								<select type="text" th:field="*{state}" class="form-control">
-								<option value="AC">Acre</option>
-								<option value="AL">Alagoas</option>
-								<option value="AP">Amapá</option>
-								<option value="AM">Amazonas</option>
-								<option value="BA">Bahia</option>
-								<option value="CE">Ceará</option>
-								<option value="DF">Distrito Federal</option>
-								<option value="ES">Espírito Santo</option>
-								<option value="GO">Goiás</option>
-								<option value="MA">Maranhão</option>
-								<option value="MT">Mato Grosso</option>
-								<option value="MS">Mato Grosso do Sul</option>
-								<option value="MG">Minas Gerais</option>
-								<option value="PA">Pará</option>
-								<option value="PB">Paraíba</option>
-								<option value="PR" selected>Paraná</option>
-								<option value="PE">Pernambuco</option>
-								<option value="PI">Piauí</option>
-								<option value="RJ">Rio de Janeiro</option>
-								<option value="RN">Rio Grande do Norte</option>
-								<option value="RS">Rio Grande do Sul</option>
-								<option value="RO">Rondônia</option>
-								<option value="RR">Roraima</option>
-								<option value="SC">Santa Catarina</option>
-								<option value="SP">São Paulo</option>
-								<option value="SE">Sergipe</option>
-								<option value="TO">Tocantins</option>
-								<option value="EX">Estrangeiro</option>
-							</select>
-						</div>
-
-					</div>
-					<div class="col">
-						<div>
-							<label>CEP</label> <input type="text" class="form-control"
-								th:field="*{zipcode}" placeholder="00000-000"
-								maxlenght="8" onkeypress="$(this).mask('00000-000')">
-						</div>
-
-					</div>
-				</div>
 				<br>
 				<div class="row">
 					<div class="col-5">
-						<label>Rota de Coleta</label> <select class="form-control" id="dropDownList">
-							<option value="">Selecione a rota</option>
-							<option th:each="route: ${allroutes}"
-							th:text="${route.name}" th:value="${route.id}"></option>
+						<label>Veículo</label> <select class="form-control" id="dropDownList">
+							<option value="">Selecione um veículo</option>
+							<option th:each="vehicle : ${allvehicles}"
+							th:text="${vehicle.name}" th:value="${vehicle.id}"></option>
 						</select>
 					</div>
 				</div>
 				<br>
-				<div>
-					<div class="form-floating">
-						<label for="floatingTextarea2">Descrição (Opcional)</label>
-						<textarea class="form-control" id="floatingTextarea2" style="height: 100px"
-						th:field="*{description}" maxlength="250" 
-						placeholder="Digite observações ou comentários sobre o cliente."></textarea>
-					</div>
-				</div>
 				<br> 
 				<div align="center">
 					<input type="submit" class="btn btn-primary" value="Salvar" /> <input
@@ -450,7 +358,7 @@ a[data-toggle="collapse"] {
 	</div>
 
 
-		<!-- TÉRMINO DA CONFIGURAÇÃO DA PÁGINA, abaixo segue o script de expandir a sidebar -->
+
 
 	<script>
 		$(document).ready(function() {

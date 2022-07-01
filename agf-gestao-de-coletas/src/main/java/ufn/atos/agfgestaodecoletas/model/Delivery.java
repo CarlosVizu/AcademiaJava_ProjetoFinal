@@ -2,7 +2,6 @@ package ufn.atos.agfgestaodecoletas.model;
 
 import java.sql.Time;
 import java.util.Date;
-import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -34,8 +33,18 @@ public class Delivery
 	@Column
 	private String closingdescription;
 	
-	@Column(nullable = false)
-	private Float boxsize;
+	@Column
+	private Float volsize;
+	
+	@Column
+	private int altura;
+	
+	@Column
+	private int largura;
+	
+	@Column
+	private int comprimento;
+	
 	
 	@Column(nullable = false)
 	private Date date;
@@ -66,24 +75,65 @@ public class Delivery
 
 	}
 
-	public Delivery(int qtyitems, String description, Float boxsize, Date date, Time time, String status) {
-		super();
-		this.qtyitems = qtyitems;
-		this.description = description;
-		this.boxsize = boxsize;
-		this.date = date;
-		this.time = time;
-		this.status = status;
-	}
-
 
 	
 	
-	@Override
-	public String toString() {
-		return "Delivery [id=" + id + ", qtyitems=" + qtyitems + ", description=" + description + ", boxsize=" + boxsize
-				+ ", date=" + date + ", time=" + time + ", status=" + status + "]";
+	public Float getVolsize() {
+		return volsize;
 	}
+
+
+
+
+	public void setVolsize(Float volsize) {
+		this.volsize = volsize;
+	}
+
+
+
+
+	public int getAltura() {
+		return altura;
+	}
+
+
+
+
+	public void setAltura(int altura) {
+		this.altura = altura;
+	}
+
+
+
+
+	public int getLargura() {
+		return largura;
+	}
+
+
+
+
+	public void setLargura(int largura) {
+		this.largura = largura;
+	}
+
+
+
+
+	public int getComprimento() {
+		return comprimento;
+	}
+
+
+
+
+	public void setComprimento(int comprimento) {
+		this.comprimento = comprimento;
+	}
+
+
+
+
 
 	public String getStatus() {
 		return status;
@@ -117,13 +167,7 @@ public class Delivery
 		this.description = description;
 	}
 
-	public Float getBoxsize() {
-		return boxsize;
-	}
 
-	public void setBoxsize(Float boxsize) {
-		this.boxsize = boxsize;
-	}
 
 	public Date getDate() {
 		return date;

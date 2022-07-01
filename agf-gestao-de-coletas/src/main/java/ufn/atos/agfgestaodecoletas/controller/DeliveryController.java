@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import ufn.atos.agfgestaodecoletas.model.Delivery;
 import ufn.atos.agfgestaodecoletas.repository.DeliveryRepository;
 import ufn.atos.agfgestaodecoletas.service.DeliveryService;
+import ufn.atos.agfgestaodecoletas.service.PersonLegalService;
+import ufn.atos.agfgestaodecoletas.service.PersonNaturalService;
 
 @Controller
 @RequestMapping(("/coletas"))
@@ -23,9 +25,12 @@ public class DeliveryController
 {
 	@Autowired
 	private DeliveryRepository data;
-	
 	@Autowired
 	private DeliveryService service;
+	@Autowired
+	private PersonNaturalService pessoaFisicaService;
+	@Autowired
+	private PersonLegalService pessoaJuridicaService;
 	
 	@GetMapping("/list")
 	public String listColeta(Model model) {
@@ -37,11 +42,15 @@ public class DeliveryController
 	@GetMapping("/new")
 	public String formColeta(Model model) {
 		model.addAttribute("coleta", new Delivery());
+		model.addAttribute("pessoafisica", pessoaFisicaService.listAll());
+		model.addAttribute("pessoajuridica", pessoaJuridicaService.listAll());
+		
 		return "formnewcoleta";
 	}
 	
 	@PostMapping("/new")
 	public String saveColeta(Delivery coleta, Model model) {
+		coleta.setStatus("AGENDADO");
 		service.save(coleta);
 		return "redirect:/coletas/list";
 	}
@@ -56,6 +65,8 @@ public class DeliveryController
 	public String formUpdateColeta(@PathVariable (value="id") Integer id, Model model) {
 		Delivery coleta = data.getById(id);
 		model.addAttribute("coleta", coleta);
+		model.addAttribute("pessoafisica", pessoaFisicaService.listAll());
+		model.addAttribute("pessoajuridica", pessoaJuridicaService.listAll());
 		return "formupdcoleta";
 	}
 	
@@ -68,7 +79,7 @@ public class DeliveryController
 		
 		coleta.setQtyitems(qtyitems);
 		coleta.setDescription(description);
-		coleta.setBoxsize(boxsize);
+		coleta.setVolsize(boxsize);
 		coleta.setDate(date);
 		coleta.setTime(time);
 		coleta.setDaily(daily);

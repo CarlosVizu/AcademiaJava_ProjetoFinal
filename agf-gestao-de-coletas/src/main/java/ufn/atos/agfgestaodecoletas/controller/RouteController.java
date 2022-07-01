@@ -27,14 +27,14 @@ public class RouteController
 	
 	@GetMapping("/list")
 	public String listRota(Model model) {
-		List<Route> Rota = service.listAll();
-		model.addAttribute("rotaList", Rota);
+		List<Route> rota = service.listAll();
+		model.addAttribute("rotaList", rota);
 		return "listrota";
 	}
 	
 	@GetMapping("/new")
 	public String formRota(Model model) {
-		model.addAttribute("Rota", new Route());
+		model.addAttribute("rota", new Route());
 		return "formnewrota";
 	}
 	
@@ -52,8 +52,8 @@ public class RouteController
 	
 	@GetMapping("/update/{id}")
 	public String formUpdateRota(@PathVariable (value="id") Integer id, Model model) {
-		Route Rota = data.getById(id);
-		model.addAttribute("Rota", Rota);
+		Route rota = data.getById(id);
+		model.addAttribute("rota", rota);
 		return "formupdrota";
 	}
 	

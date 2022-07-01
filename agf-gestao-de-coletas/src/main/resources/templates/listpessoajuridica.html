@@ -354,7 +354,7 @@ a[data-toggle="collapse"] {
 				<tbody>
 					<tr th:each="person : ${personList}">
 						<td th:text="${person.name}"></td>
-						<td th:text="${person.cpf}"></td>
+						<td th:text="${person.cnpj}"></td>
 						<td th:text="${person.email}"></td>
 						<td th:text="${person.address}"></td>
 						<td th:text="${person.number}"></td>
@@ -370,7 +370,7 @@ a[data-toggle="collapse"] {
 				<tfoot>
 					<tr>
 						<th>Nome</th>
-						<th>CPF</th>
+						<th>CNPJ</th>
 						<th>E-mail</th>
 						<th>Endereço</th>
 						<th>Número</th>

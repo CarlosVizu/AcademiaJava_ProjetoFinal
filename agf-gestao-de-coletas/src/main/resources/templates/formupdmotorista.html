@@ -317,7 +317,7 @@ a[data-toggle="collapse"] {
 					Editar - Motorista
 					</h5>
 			</div>
-			<form action="#" th:action="@{/motoristas/new}"
+			<form th:action="@{/motoristas/update}"
 				th:object="${motorista}" method="post">
 
 				<input type="hidden" th:field="*{id}" /> <br>
@@ -356,7 +356,6 @@ a[data-toggle="collapse"] {
 			</form>
 		</div>
 	</div>
-
 
 
 

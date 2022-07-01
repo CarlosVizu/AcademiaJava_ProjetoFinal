@@ -9,17 +9,14 @@
 <title>Gestão de Coleta</title>
 
 
-<link rel="stylesheet" href="style.css">
-
-<link rel="stylesheet" type="text/css"
-	href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.css">
-
-<script type="text/javascript" charset="utf8"
-	src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
 	integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4"
 	crossorigin="anonymous">
+<!-- Our Custom CSS -->
+
+<!-- Font Awesome JS -->
+
 
 <script defer
 	src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js"
@@ -34,12 +31,16 @@
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
 	integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
 	crossorigin="anonymous"></script>
+<!-- Popper.JS -->
+
 
 <!-- Bootstrap JS -->
 <script
 	src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"
 	integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm"
 	crossorigin="anonymous"></script>
+
+
 
 <!-- jQuery CDN - Slim version (=without AJAX) -->
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
@@ -52,56 +53,32 @@
 	crossorigin="anonymous"></script>
 <!-- Bootstrap JS -->
 
+
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js">
 </script>
 
-<script src="https://code.jquery.com/jquery-3.5.1.js">
-</script>
-<script
-	src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js">
-</script>
-
-<script
-	src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
-
-<link
-	href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.3/css/bootstrap.min.css">
-<link
-	href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css">
-
-<link href="css/style.css" rel="stylesheet">
 
 <style>
 @charset "UTF-8";
 
 @import
 	"https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
+	
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css");
 
-@import
-	url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css")
-	;
 
-@import
-	url("https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css")
-	;
+
+@import url("https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css");
 
 @import url("https://use.fontawesome.com/releases/v5.0.13/js/solid.js");
-
-@import
-	url("https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js");
-
+@import url("https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js");
 @import url("https://code.jquery.com/jquery-3.3.1.slim.min.js");
-
-@import
-	url("https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js")
-	;
-
+@import url("https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js");
 @import url("https://code.jquery.com/jquery-3.3.1.slim.min.js");
+@import url("https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js");
 
-@import
-	url("https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js")
-	;
+
 
 body {
 	font-family: 'Poppins', sans-serif;
@@ -253,6 +230,7 @@ a[data-toggle="collapse"] {
 .colorfifth {
 	color: rgba(228, 242, 231, 1);
 }
+
 </style>
 
 </head>
@@ -260,7 +238,7 @@ a[data-toggle="collapse"] {
 
 <body>
 
-
+	<!--  Navbar/sidebar expandível -->
 	<div class="wrapper">
 		<!-- Sidebar -->
 		<nav id="sidebar">
@@ -317,7 +295,7 @@ a[data-toggle="collapse"] {
 
 		</nav>
 
-		<!-- Page Content -->
+		<!-- Botão de expandir sidebar via javascript -->
 		<div id="align-content-center">
 			<nav class="navbar navbar-expand-sm">
 				<ul class="navbar-nav">
@@ -330,62 +308,68 @@ a[data-toggle="collapse"] {
 
 				</ul>
 			</nav>
+		
 		</div>
 		<br>
+		<br>
+		
+		<!--  a partir daqui vai a configuração da página de acordo com a função. -->
 
 
-		<div id="content" class="form-control">
+		<div class="h-100 w-50 p-3 mx-auto mt-5 rounded"
+			style="background-color: #97A6A0;">
 
-			<table id="example" class="table table-striped table-bordered"
-				style="width: 100%">
-				<thead>
-					<tr>
-						<th>Nome</th>
-						<th>CPF</th>
-						<th>E-mail</th>
-						<th>Endereço</th>
-						<th>Número</th>
-						<th>Cidade</th>
-						<th>CEP</th>
-						<th>Descrição</th>
-						<th>Ações</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr th:each="person : ${personList}">
-						<td th:text="${person.name}"></td>
-						<td th:text="${person.cpf}"></td>
-						<td th:text="${person.email}"></td>
-						<td th:text="${person.address}"></td>
-						<td th:text="${person.number}"></td>
-						<td th:text="${person.city}"></td>
-						<td th:text="${person.zipcode}"></td>
-						<td th:text="${person.description}"></td>
-						<td><a th:href="@{/clientefisico/update/{id}(id=${person.id})}"
-							class="btn btn-primary">Editar</a> <a
-							th:href="@{/clientefisico/delete/{id}(id=${person.id})}"
-							class="btn btn-danger">Deletar</a></td>
-					</tr>
-				</tbody>
-				<tfoot>
-					<tr>
-						<th>Nome</th>
-						<th>CPF</th>
-						<th>E-mail</th>
-						<th>Endereço</th>
-						<th>Número</th>
-						<th>Cidade</th>
-						<th>CEP</th>
-						<th>Descrição</th>
-						<th>Ações</th>
-					</tr>
-				</tfoot>
-			</table>
-			
+			<br>
+
+			<div class="text-white bg-dark rounded">
+				<h5 align="center">
+					Cadastrar Novo - Veiculo
+					</h5>
+			</div>
+			<form action="#" th:action="@{/veiculos/new}"
+				th:object="${veiculo}" method="post">
+
+				<input type="hidden" th:field="*{id}" /> <br>
+				
+				<div>
+					<label>Nome</label> <input type="text" class="form-control"
+						th:field="*{name}" placeholder="Nome do veículo">
+				</div>
+				<br>
+
+				<div class="row">
+					<div class="col">
+						<label>Volume máximo de carga</label> <input type="number" th:field="*{volsize}"
+							maxlength="11" class="form-control" 
+							placeholder="Realizar cálculo: 00cm(Altura) * 00cm(Largura) * 00cm(Comprimento) = cm³ ">
+					</div>
+
+				</div>
+
+				<br>
+				<div class="row">
+					<div class="col-5">
+						<label>Tipo do veículo</label> 
+						<select class="form-control" type="text" th:field="*{type}">
+							<option value="">Selecione um tipo de veículo</option>
+							<option value="MOTO-CAIXA">Moto com caixa</option>
+							<option value="MOTO-REBOQUE">Moto com reboque</option>
+							<option value="UTILITARIO">Carro Utilitário</option>
+						</select>
+					</div>
+				</div>
+				<br>
+				<br> 
+				<div align="center">
+					<input type="submit" class="btn btn-primary" value="Salvar" /> <input
+						type="reset" class="btn btn-secondary" value="Limpar" />
+				</div>
+			</form>
 		</div>
 	</div>
 
 
+		<!-- TÉRMINO DA CONFIGURAÇÃO DA PÁGINA, abaixo segue o script de expandir a sidebar -->
 
 	<script>
 		$(document).ready(function() {
@@ -395,11 +379,6 @@ a[data-toggle="collapse"] {
 			});
 
 		});
-	</script>
-	<script>
-	$(document).ready(function () {
-	    $('#example').DataTable();
-	});
 	</script>
 
 </body>

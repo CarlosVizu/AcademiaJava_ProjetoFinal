@@ -53,7 +53,7 @@ public class VehicleController
 	@GetMapping("/update/{id}")
 	public String formUpdateRota(@PathVariable (value="id") Integer id, Model model) {
 		Vehicle veiculo = data.getById(id);
-		model.addAttribute("veiculos", veiculo);
+		model.addAttribute("veiculo", veiculo);
 		return "formupdveiculo";
 	}
 	

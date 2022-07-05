@@ -15,7 +15,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "Vehicle")
+@Table(name = "vehicle")
 public class Vehicle 
 {
 	
@@ -33,12 +33,12 @@ public class Vehicle
 	private Float volsize;
 	
 	
-	@OneToOne(mappedBy = "vehicle", targetEntity = Driver.class)
+	@OneToOne
 	@JoinColumn(name = "driver_id")
 	private Driver driver;
 	
-	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	private List<PersonDeliveryRoute> personDeliveryRoute;
+	//@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	//private List<PersonDeliveryRoute> personDeliveryRoute;
 	
 	
 	

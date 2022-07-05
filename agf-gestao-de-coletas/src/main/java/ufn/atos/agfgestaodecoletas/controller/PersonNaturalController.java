@@ -51,6 +51,8 @@ public class PersonNaturalController
 	@PostMapping("/new")
 	public String savePFisica(PersonNatural person, Model model) {
 		service.save(person);
+		
+	//	System.out.println(route.getId());
 		return "redirect:/clientefisico/list";
 	}
 	

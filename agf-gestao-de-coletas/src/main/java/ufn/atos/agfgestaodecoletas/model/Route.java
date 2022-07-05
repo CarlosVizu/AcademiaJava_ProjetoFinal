@@ -15,7 +15,7 @@ import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-@Table(name = "Route")
+@Table(name = "route")
 public class Route 
 {
 	
@@ -29,14 +29,14 @@ public class Route
 	@Column
 	private String description;
 	
-	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, targetEntity = PersonNatural.class)
-	@JoinColumn(name = "personnatural_id")
-	private PersonNatural personNatural;
-	
-	@ManyToOne(fetch = FetchType.LAZY,  cascade = CascadeType.ALL, targetEntity = PersonLegal.class)
-	@JoinColumn(name = "personlegal_id")
-	private PersonLegal personLegal;
-	
+//	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, targetEntity = PersonNatural.class)
+//	@JoinColumn(name = "personnatural_id")
+//	private PersonNatural personNatural;
+//	
+//	@ManyToOne(fetch = FetchType.LAZY,  cascade = CascadeType.ALL, targetEntity = PersonLegal.class)
+//	@JoinColumn(name = "personlegal_id")
+//	private PersonLegal personLegal;
+//	
 	/*
 	 * @OneToMany(mappedBy = "persondeliveryroute", fetch = FetchType.LAZY, cascade
 	 * = CascadeType.ALL, targetEntity = PersonDeliveryRoute.class) private

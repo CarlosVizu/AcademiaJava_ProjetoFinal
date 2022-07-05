@@ -13,11 +13,11 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-@Entity
-@Table(name = "PersonDeliveryRoute")
+//@Entity
+//@Table(name = "PersonDeliveryRoute")
 public class PersonDeliveryRoute 
 {
-	
+	/*
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
@@ -44,5 +44,5 @@ public class PersonDeliveryRoute
 	}
 
 
-
+*/
 }

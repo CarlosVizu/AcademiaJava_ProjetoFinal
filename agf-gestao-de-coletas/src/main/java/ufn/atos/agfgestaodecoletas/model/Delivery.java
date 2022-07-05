@@ -2,6 +2,8 @@ package ufn.atos.agfgestaodecoletas.model;
 
 import java.sql.Time;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -15,8 +17,10 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
-@Table(name = "Delivery")
+@Table(name = "delivery")
 public class Delivery 
 {
 	
@@ -58,82 +62,61 @@ public class Delivery
 	@Column(nullable = false)
 	private String status;
 	
-	@ManyToOne(fetch = FetchType.EAGER, targetEntity = PersonNatural.class)
-	@JoinColumn(name = "personnatural_id")
-	private PersonNatural personNatural;
+	//@ManyToMany(fetch = FetchType.EAGER, targetEntity = PersonNatural.class)
+	//@JoinColumn(name = "personnatural_id")
+	//private PersonNatural personNatural;
 	
-	@ManyToOne(fetch = FetchType.EAGER, targetEntity = PersonLegal.class)
-	@JoinColumn(name = "personlegal_id")
-	private PersonLegal personLegal;
+	//@ManyToOne(fetch = FetchType.EAGER, targetEntity = PersonLegal.class)
+	//@JoinColumn(name = "personlegal_id")
+	//private PersonLegal personLegal;
 	
-	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, targetEntity = PersonDeliveryRoute.class)
-	private PersonDeliveryRoute personDeliveryRoute;
+	//@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, targetEntity = PersonDeliveryRoute.class)
+	//private PersonDeliveryRoute personDeliveryRoute;
 	
+	@ManyToMany(mappedBy = "delivery", fetch = FetchType.LAZY)
+	@JsonIgnore
+	private Set<PersonNatural> personnatural = new HashSet<>();
+	
+	@ManyToMany(mappedBy = "delivery", fetch = FetchType.LAZY)
+	@JsonIgnore
+	private Set<PersonLegal> personlegal = new HashSet<>();
 	
 	
 	public Delivery() {
 
 	}
 
-
-	
-	
 	public Float getVolsize() {
 		return volsize;
 	}
-
-
-
 
 	public void setVolsize(Float volsize) {
 		this.volsize = volsize;
 	}
 
-
-
-
 	public int getAltura() {
 		return altura;
 	}
-
-
-
 
 	public void setAltura(int altura) {
 		this.altura = altura;
 	}
 
-
-
-
 	public int getLargura() {
 		return largura;
 	}
-
-
-
 
 	public void setLargura(int largura) {
 		this.largura = largura;
 	}
 
-
-
-
 	public int getComprimento() {
 		return comprimento;
 	}
 
-
-
-
 	public void setComprimento(int comprimento) {
 		this.comprimento = comprimento;
 	}
-
-
-
-
 
 	public String getStatus() {
 		return status;
@@ -200,8 +183,6 @@ public class Delivery
 	public void setDaily(boolean daily) {
 		this.daily = daily;
 	}
-	
-	
 	
 	
 }

@@ -10,11 +10,15 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import ufn.atos.agfgestaodecoletas.model.Delivery;
+import ufn.atos.agfgestaodecoletas.model.PersonNatural;
 import ufn.atos.agfgestaodecoletas.repository.DeliveryRepository;
+import ufn.atos.agfgestaodecoletas.repository.PersonLegalRepository;
+import ufn.atos.agfgestaodecoletas.repository.PersonNaturalRepository;
 import ufn.atos.agfgestaodecoletas.service.DeliveryService;
 import ufn.atos.agfgestaodecoletas.service.PersonLegalService;
 import ufn.atos.agfgestaodecoletas.service.PersonNaturalService;
@@ -31,6 +35,10 @@ public class DeliveryController
 	private PersonNaturalService pessoaFisicaService;
 	@Autowired
 	private PersonLegalService pessoaJuridicaService;
+	@Autowired
+	private PersonNaturalRepository pessoaFisicaRepository;
+	@Autowired
+	private PersonLegalRepository pessoaJuridicaRepository;
 	
 	@GetMapping("/list")
 	public String listColeta(Model model) {
@@ -51,6 +59,11 @@ public class DeliveryController
 	@PostMapping("/new")
 	public String saveColeta(Delivery coleta, Model model) {
 		coleta.setStatus("AGENDADO");
+		
+		//PersonNatural pf = pessoaFisicaRepository.findById(id).get();
+		//Delivery d = data.findById(coleta.getId()).get();
+		//pf.getDeliveries().add(d);
+		
 		service.save(coleta);
 		return "redirect:/coletas/list";
 	}

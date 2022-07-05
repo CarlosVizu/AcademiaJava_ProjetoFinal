@@ -1,6 +1,8 @@
 package ufn.atos.agfgestaodecoletas.model;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -10,12 +12,14 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "PersonLegal")
+@Table(name = "personlegal")
 public class PersonLegal {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -40,14 +44,18 @@ public class PersonLegal {
 	@Column
 	private String description;
 
-	@ManyToOne(fetch = FetchType.EAGER, targetEntity = Route.class)
-	@JoinColumn(name = "route_id")
+	@ManyToOne
 	private Route route;
 
-	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	private List<Delivery> deliveries;
+	//@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	//private List<Delivery> deliveries;
 	
-	
+//	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+//	@JoinTable(name = "personlegal_delivery", joinColumns = {
+//			@JoinColumn(name = "personlegal_id", referencedColumnName = "id", nullable = false, updatable = false) }, inverseJoinColumns = {
+//					@JoinColumn(name = "delivery_id", referencedColumnName = "id") })
+	@ManyToMany(fetch = FetchType.LAZY)
+	private Set<Delivery> delivery = new HashSet<>();
 	
 	
 	
@@ -158,12 +166,12 @@ public class PersonLegal {
 		this.route = route;
 	}
 
-	public List<Delivery> getDeliveries() {
-		return deliveries;
+	public Set<Delivery> getDeliveries() {
+		return delivery;
 	}
 
-	public void setDeliveries(List<Delivery> deliveries) {
-		this.deliveries = deliveries;
+	public void setDeliveries(Set<Delivery> deliveries) {
+		this.delivery = deliveries;
 	}
 
 }

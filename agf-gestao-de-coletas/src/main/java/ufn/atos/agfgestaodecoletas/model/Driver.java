@@ -11,7 +11,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "Driver")
+@Table(name = "driver")
 public class Driver 
 {
 	@Id
@@ -23,9 +23,8 @@ public class Driver
 	@Column(nullable=false, unique = true)
 	private String cnh;
 	
-	@OneToOne(cascade = CascadeType.ALL, targetEntity = Vehicle.class)
-	@JoinColumn(name = "vehicle_id")
-	private Vehicle vehicle;
+	//@OneToOne(cascade = CascadeType.ALL, targetEntity = Vehicle.class)
+	//private Vehicle vehicle;
 	
 	
 	

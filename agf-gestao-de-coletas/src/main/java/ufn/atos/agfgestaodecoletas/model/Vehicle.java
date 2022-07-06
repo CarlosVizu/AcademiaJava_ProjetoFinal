@@ -32,10 +32,8 @@ public class Vehicle
 	@Column(nullable = false)
 	private Float volsize;
 	
-	
-	@OneToOne
-	@JoinColumn(name = "driver_id")
-	private Driver driver;
+	//@OneToOne
+	//private Driver driver;
 	
 	//@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	//private List<PersonDeliveryRoute> personDeliveryRoute;

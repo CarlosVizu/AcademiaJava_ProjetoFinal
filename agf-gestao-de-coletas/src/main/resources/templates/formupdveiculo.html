@@ -345,7 +345,16 @@ a[data-toggle="collapse"] {
 							<option value="">Selecione um tipo de veículo</option>
 							<option value="MOTO-CAIXA">Moto com caixa</option>
 							<option value="MOTO-REBOQUE">Moto com reboque</option>
-							<option value="UTILITARIO">Selecione um tipo de veículo</option>
+							<option value="UTILITARIO">Carro Utilitário</option>
+						</select>
+					</div>
+					<div class="col-5">
+						<label>Selecione o motorista</label> 
+						<select th:field="*{driver}"
+							class="form-control">
+							<option value="">Selecione o motorista atual</option>
+							<option th:each="driver: ${motoristaList}" th:text="${driver.name}"
+								th:value="${driver.id}"></option>
 						</select>
 					</div>
 				</div>

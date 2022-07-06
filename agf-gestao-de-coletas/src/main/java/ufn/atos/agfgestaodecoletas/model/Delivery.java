@@ -81,10 +81,58 @@ public class Delivery
 	@JsonIgnore
 	private Set<PersonLegal> personlegal = new HashSet<>();
 	
+	@ManyToMany(fetch = FetchType.LAZY)
+	private Set<Transport> transport = new HashSet<>();
+	
 	
 	public Delivery() {
 
 	}
+
+	
+	
+	
+	public Set<PersonNatural> getPersonnatural() {
+		return personnatural;
+	}
+
+
+
+
+	public void setPersonnatural(Set<PersonNatural> personnatural) {
+		this.personnatural = personnatural;
+	}
+
+
+
+
+	public Set<PersonLegal> getPersonlegal() {
+		return personlegal;
+	}
+
+
+
+
+	public void setPersonlegal(Set<PersonLegal> personlegal) {
+		this.personlegal = personlegal;
+	}
+
+
+
+
+	public Set<Transport> getTransport() {
+		return transport;
+	}
+
+
+
+
+	public void setTransport(Set<Transport> transport) {
+		this.transport = transport;
+	}
+
+
+
 
 	public Float getVolsize() {
 		return volsize;

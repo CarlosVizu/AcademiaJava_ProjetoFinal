@@ -373,12 +373,9 @@ a[data-toggle="collapse"] {
 				<br>
 				<div>
 					<label>Cliente</label> 
-					<select class="form-control" id="dropDownList" placeholder="Selecione o cliente da coleta">
-					<option value="">Selecione o cliente</option>
+					<select class="form-control" th:field="${coleta.personnatural}">
 					<option th:each="pessoa: ${pessoafisica}" 
-					th:text="${pessoa.name}" th:value="${pessoa.id}" name="id"></option>
-					<option th:each="pessoa: ${pessoajuridica}" 
-					th:text="${pessoa.name}" th:value="${pessoa.id}" name="id"></option>
+					th:text="${pessoa.name}" th:value="${pessoa.id}"></option>
 					</select>
 				</div>
 				<br><br>

@@ -19,9 +19,11 @@ import ufn.atos.agfgestaodecoletas.model.PersonNatural;
 import ufn.atos.agfgestaodecoletas.repository.DeliveryRepository;
 import ufn.atos.agfgestaodecoletas.repository.PersonLegalRepository;
 import ufn.atos.agfgestaodecoletas.repository.PersonNaturalRepository;
+import ufn.atos.agfgestaodecoletas.repository.VehicleRepository;
 import ufn.atos.agfgestaodecoletas.service.DeliveryService;
 import ufn.atos.agfgestaodecoletas.service.PersonLegalService;
 import ufn.atos.agfgestaodecoletas.service.PersonNaturalService;
+import ufn.atos.agfgestaodecoletas.service.VehicleService;
 
 @Controller
 @RequestMapping(("/coletas"))
@@ -39,6 +41,8 @@ public class DeliveryController
 	private PersonNaturalRepository pessoaFisicaRepository;
 	@Autowired
 	private PersonLegalRepository pessoaJuridicaRepository;
+	@Autowired
+	private VehicleService vehicleService;
 	
 	@GetMapping("/list")
 	public String listColeta(Model model) {
@@ -52,6 +56,7 @@ public class DeliveryController
 		model.addAttribute("coleta", new Delivery());
 		model.addAttribute("pessoafisica", pessoaFisicaService.listAll());
 		model.addAttribute("pessoajuridica", pessoaJuridicaService.listAll());
+		model.addAttribute("vehicle", vehicleService.listAll());
 		
 		return "formnewcoleta";
 	}

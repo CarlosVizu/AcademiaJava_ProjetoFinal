@@ -316,48 +316,85 @@ a[data-toggle="collapse"] {
 		<!--  a partir daqui vai a configuração da página de acordo com a função. -->
 
 
-		<div class="h-100 w-50 p-3 mx-auto mt-5 rounded"
+		<div class="h-100 w-50 p-3 mx-auto mt-2 rounded"
 			style="background-color: #97A6A0;">
 
 			<br>
 
 			<div class="text-white bg-dark rounded">
 				<h5 align="center">
-					Cadastrar Novo - Motorista
+					Cadastrar Nova - Coleta
 					</h5>
 			</div>
-			<form action="#" th:action="@{/motoristas/new}"
-				th:object="${motorista}" method="post">
-
-				<input type="hidden" th:field="*{id}" /> <br>
+			<form action="#" th:action="@{/transporte/new}"method="post">
 				
-				<div>
-					<label>Nome</label> <input type="text" class="form-control"
-						th:field="*{name}" placeholder="Nome completo">
-				</div>
-				<br>
-
+				 <br>
+				
 				<div class="row">
 					<div class="col">
-						<label>CNH</label> <input type="text" th:field="*{cnh}"
-							maxlength="11" class="form-control" placeholder="00000000000"
-							onkeypress="$(this).mask('00000000000')">
+						<label>Data do transporte</label>
+					</div>
+					<div class="col">
+						<label>Hora do transporte</label>
+					</div>
+				</div>
+				<div class="row">
+				
+					<div class="col input-group date" data-provide="datepicker">
+					
+						<input th:text="${#temporals.format(transporte.date, 'dd-MM-yyyy')}"
+						th:value="${transporte.date}" name="date" class="form-control"
+						placeholder="DD/MM/YYYY"
+							onkeypress="$(this).mask('00/00/0000')">
+							<span class="input-group-addon">
+							<span class="glyphicon glyphicon-calendar"/>
+							</span>
+							
 					</div>
 
-				</div>
 
+					<div class="col">
+						<div>
+							<select th:value="${transporte.time}" name = "time" class="form-control">
+								<option value="">Selecione a hora da coleta</option>
+								<option value="09:00:00">09:00</option>
+								<option value="10:00:00">10:00</option>
+								<option value="11:00:00">11:00</option>
+								<option value="13:00:00">13:00</option>
+								<option value="14:00:00">14:00</option>
+								<option value="15:00:00">15:00</option>
+								<option value="16:00:00">16:00</option>
+								<option value="17:00:00">17:00</option>
+							</select>
+						</div>
+
+					</div>
+				</div>
 				<br>
+				<div>
+					<label>Cliente</label> 
+					<select class="form-control" th:field="*{coleta}">
+						<option value="">Selecione a coleta</option>
+						<option th:each="coleta: ${coleta}" 
+					th:text="${coleta.description}" th:value="${coleta.id}" name="id"></option>
+					</select>
+				</div>
+				<br><br>
+				
 				<div class="row">
 					<div class="col-5">
 						<label>Veículo</label> 
-						<select th:field="*{vehicle}" class="form-control">
+						<select th:field="*{transporte.vehicle}" class="form-control">
 							<option value="">Selecione o veículo</option>
-							<option th:each="vehicle: ${allvehicles}"
+							<option th:each="vehicle: ${vehicle}"
 							th:text="${vehicle.name}" th:value="${vehicle.id}"></option>
 						</select>
 					</div>
 				</div>
 				<br>
+
+				<br>
+
 				<br> 
 				<div align="center">
 					<input type="submit" class="btn btn-primary" value="Salvar" /> <input

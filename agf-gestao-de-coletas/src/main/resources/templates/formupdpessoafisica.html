@@ -424,7 +424,8 @@ a[data-toggle="collapse"] {
 				<br>
 				<div class="row">
 					<div class="col-5">
-						<label>Rota de Coleta</label> <select class="form-control" id="dropDownList">
+						<label>Rota de Coleta</label> 
+						<select th:field="*{route}" class="form-control">
 							<option th:each="route: ${allroutes}"
 							th:text="${route.name}" th:value="${route.id}"></option>
 						</select>

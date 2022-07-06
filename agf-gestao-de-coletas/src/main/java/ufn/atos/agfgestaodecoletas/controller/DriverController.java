@@ -30,7 +30,7 @@ public class DriverController
 	@GetMapping("/list")
 	public String listMotorista(Model model) {
 		List<Driver> driver = service.listAll();
-		model.addAttribute("veiculoList", driver);
+		model.addAttribute("motoristaList", driver);
 		return "listmotorista";
 	}
 	

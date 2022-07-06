@@ -23,11 +23,21 @@ public class Driver
 	@Column(nullable=false, unique = true)
 	private String cnh;
 	
-	//@OneToOne(cascade = CascadeType.ALL, targetEntity = Vehicle.class)
-	//private Vehicle vehicle;
+	@OneToOne
+	private Vehicle vehicle;
 	
 	
 	
+	
+	
+	public Vehicle getVehicle() {
+		return vehicle;
+	}
+
+	public void setVehicle(Vehicle vehicle) {
+		this.vehicle = vehicle;
+	}
+
 	public Driver() {
 	}
 

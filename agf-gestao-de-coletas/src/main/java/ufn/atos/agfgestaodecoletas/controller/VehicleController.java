@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import ufn.atos.agfgestaodecoletas.model.Vehicle;
 import ufn.atos.agfgestaodecoletas.repository.VehicleRepository;
+import ufn.atos.agfgestaodecoletas.service.DriverService;
 import ufn.atos.agfgestaodecoletas.service.VehicleService;
 
 @Controller
@@ -24,6 +25,9 @@ public class VehicleController
 	
 	@Autowired
 	private VehicleService service;
+	
+	@Autowired
+	private DriverService driverService;
 	
 	@GetMapping("/list")
 	public String listRota(Model model) {
@@ -54,6 +58,7 @@ public class VehicleController
 	public String formUpdateRota(@PathVariable (value="id") Integer id, Model model) {
 		Vehicle veiculo = data.getById(id);
 		model.addAttribute("veiculo", veiculo);
+		model.addAttribute("motoristaList", driverService.listAll());
 		return "formupdveiculo";
 	}
 	

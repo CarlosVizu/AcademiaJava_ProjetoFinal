@@ -13,6 +13,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -62,23 +63,17 @@ public class Delivery
 	@Column(nullable = false)
 	private String status;
 	
-	//@ManyToMany(fetch = FetchType.EAGER, targetEntity = PersonNatural.class)
-	//@JoinColumn(name = "personnatural_id")
-	//private PersonNatural personNatural;
+
 	
-	//@ManyToOne(fetch = FetchType.EAGER, targetEntity = PersonLegal.class)
-	//@JoinColumn(name = "personlegal_id")
-	//private PersonLegal personLegal;
-	
-	//@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, targetEntity = PersonDeliveryRoute.class)
-	//private PersonDeliveryRoute personDeliveryRoute;
-	
-	@ManyToMany(mappedBy = "delivery", fetch = FetchType.LAZY)
-	@JsonIgnore
+//	@ManyToMany(mappedBy = "delivery", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+	@JoinTable(name = "personnatural_delivery", joinColumns = {
+			 @JoinColumn(name = "delivery_id", referencedColumnName = "id", nullable
+			 = false, updatable = false) }, inverseJoinColumns = {
+			 @JoinColumn(name = "personnatural_id", referencedColumnName = "id") })
+			@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
 	private Set<PersonNatural> personnatural = new HashSet<>();
 	
 	@ManyToMany(mappedBy = "delivery", fetch = FetchType.LAZY)
-	@JsonIgnore
 	private Set<PersonLegal> personlegal = new HashSet<>();
 	
 	@ManyToMany(fetch = FetchType.LAZY)

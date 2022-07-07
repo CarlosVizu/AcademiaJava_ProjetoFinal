@@ -326,7 +326,7 @@ a[data-toggle="collapse"] {
 					Cadastrar Nova - Coleta
 					</h5>
 			</div>
-			<form action="#" th:action="@{/coletas/new}"method="post">
+			<form action="#" th:object="${delivery}" th:action="@{/coletas/new}" method="post">
 				
 				 <br>
 				
@@ -342,8 +342,8 @@ a[data-toggle="collapse"] {
 				
 					<div class="col input-group date" data-provide="datepicker">
 					
-						<input th:text="${#temporals.format(coleta.date, 'dd-MM-yyyy')}"
-						th:value="${coleta.date}" name="date" class="form-control"
+						<input th:text="${#temporals.format(delivery.date, 'dd-MM-yyyy')}"
+						th:value="${delivery.date}" name="date" class="form-control"
 						placeholder="DD/MM/YYYY"
 							onkeypress="$(this).mask('00/00/0000')">
 							<span class="input-group-addon">
@@ -355,7 +355,7 @@ a[data-toggle="collapse"] {
 
 					<div class="col">
 						<div>
-							<select th:value="${coleta.time}" name = "time" class="form-control">
+							<select th:value="${delivery.time}" name = "time" class="form-control">
 								<option value="">Selecione a hora da coleta</option>
 								<option value="09:00:00">09:00</option>
 								<option value="10:00:00">10:00</option>
@@ -373,35 +373,37 @@ a[data-toggle="collapse"] {
 				<br>
 				<div>
 					<label>Cliente</label> 
-					<select class="form-control" th:field="${coleta.personnatural}">
-					<option th:each="pessoa: ${pessoafisica}" 
-					th:text="${pessoa.name}" th:value="${pessoa.id}"></option>
+					<select th:field="*{personnatural}" class="form-control">
+						<option value="">Selecione um cliente</option>
+						<option th:each="personnatural: ${personnatural}" 
+						th:text="${personnatural.name}" th:value="${personnatural.id}"></option>
 					</select>
 				</div>
+				
 				<br><br>
 				
 				<div class="row">
 					<div class="col-5">
 						<label>Quantidade de itens</label>
 						<input type="number" class="form-control" 
-							placeholder="n° total de itens" th:value="${coleta.qtyitems}" name = "qtyitems">
+							placeholder="n° total de itens" th:value="${delivery.qtyitems}" name = "qtyitems">
 					</div>
 					<br>
 					<div class="row container">
 						<div class="col-3">
 							<label>Altura</label>
 							<input type="number" class="form-control"
-							th:value="${coleta.altura}" placeholder="cm" name = "altura">
+							th:value="${delivery.altura}" placeholder="cm" name = "altura">
 						</div>
 						<div class="col-3">
 							<label>Largura</label>
 							<input type="number" class="form-control"
-							th:value="${coleta.largura}" placeholder="cm" name = "largura">
+							th:value="${delivery.largura}" placeholder="cm" name = "largura">
 						</div>
 						<div class="col-3">
 							<label>Comprimento</label>
 							<input type="number" class="form-control"
-							th:value="${coleta.comprimento}" placeholder="cm" name = "comprimento">
+							th:value="${delivery.comprimento}" placeholder="cm" name = "comprimento">
 						</div>
 					</div>
 
@@ -413,7 +415,7 @@ a[data-toggle="collapse"] {
 					<div class="form-floating">
 						<label for="floatingTextarea2">Descrição (Opcional)</label>
 						<textarea class="form-control" id="floatingTextarea2" style="height: 100px"
-						th:value="${coleta.description}" name = "description" maxlength="250" 
+						th:value="${delivery.description}" name = "description" maxlength="250" 
 						placeholder="Digite observações ou comentários sobre esta coleta"></textarea>
 					</div>
 				</div>

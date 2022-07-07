@@ -53,9 +53,9 @@ public class DeliveryController
 	
 	@GetMapping("/new")
 	public String formColeta(Model model) {
-		model.addAttribute("coleta", new Delivery());
-		model.addAttribute("pessoafisica", pessoaFisicaService.listAll());
-		model.addAttribute("pessoajuridica", pessoaJuridicaService.listAll());
+		model.addAttribute("delivery", new Delivery());
+		model.addAttribute("personnatural", pessoaFisicaService.listAll());
+		model.addAttribute("personlegal", pessoaJuridicaService.listAll());
 		model.addAttribute("vehicle", vehicleService.listAll());
 		
 		return "formnewcoleta";
@@ -68,6 +68,7 @@ public class DeliveryController
 		//PersonNatural pf = pessoaFisicaRepository.findById(id).get();
 		//Delivery d = data.findById(coleta.getId()).get();
 		//pf.getDeliveries().add(d);
+		
 		
 		service.save(coleta);
 		return "redirect:/coletas/list";

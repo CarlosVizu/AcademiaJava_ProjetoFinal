@@ -43,7 +43,7 @@ public class PersonNaturalController
 	@GetMapping("/new")
 	public String formPFisica(Model model) {
 		model.addAttribute("personnatural", new PersonNatural());
-		model.addAttribute("allroutes", serviceRoute.listAll());
+		model.addAttribute("route", serviceRoute.listAll());
 		
 		return "formnewpessoafisica";
 	}

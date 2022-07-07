@@ -47,15 +47,16 @@ public class PersonNatural
 	private Route route;
 	
 	
-	// @JoinTable(name = "personnatural_delivery", joinColumns = {
-	// @JoinColumn(name = "personnatural_id", referencedColumnName = "id", nullable
-	// = false, updatable = false) }, inverseJoinColumns = {
-	// @JoinColumn(name = "delivery_id", referencedColumnName = "id") })
-	@ManyToMany(fetch = FetchType.LAZY)
+//	@JoinTable(name = "personnatural_delivery", joinColumns = {
+//	 @JoinColumn(name = "personnatural_id", referencedColumnName = "id", nullable
+//	 = false, updatable = false) }, inverseJoinColumns = {
+//	 @JoinColumn(name = "delivery_id", referencedColumnName = "id") })
+	@ManyToMany(mappedBy = "personnatural", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
 	private Set<Delivery> delivery = new HashSet<>();
 
 	public PersonNatural() {
 	}
+	
 	
 	public PersonNatural(String name, String cpf, String address, String zipcode, String city, String description,
 			Route route) {
@@ -72,6 +73,15 @@ public class PersonNatural
 
 	
 	
+	
+	public Set<Delivery> getDelivery() {
+		return delivery;
+	}
+
+	public void setDelivery(Set<Delivery> delivery) {
+		this.delivery = delivery;
+	}
+
 	public String getState() {
 		return state;
 	}

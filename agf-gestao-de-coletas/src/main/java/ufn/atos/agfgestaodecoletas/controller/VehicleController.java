@@ -30,10 +30,10 @@ public class VehicleController
 	private DriverService driverService;
 	
 	@GetMapping("/list")
-	public String listRota(Model model) {
+	public String listVeiculo(Model model) {
 		List<Vehicle> vehicle = service.listAll();
 		model.addAttribute("veiculoList", vehicle);
-		return "listrota";
+		return "listveiculo";
 	}
 	
 	@GetMapping("/new")

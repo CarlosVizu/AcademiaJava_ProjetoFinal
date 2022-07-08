@@ -48,6 +48,10 @@ public class DeliveryController
 	public String listColeta(Model model) {
 		List<Delivery> coleta = service.listAll();
 		model.addAttribute("coletaList", coleta);
+		model.addAttribute("personnatural", pessoaFisicaService.listAll());
+		model.addAttribute("personlegal", pessoaJuridicaService.listAll());
+		model.addAttribute("vehicle", vehicleService.listAll());
+		
 		return "listcoleta";
 	}
 	

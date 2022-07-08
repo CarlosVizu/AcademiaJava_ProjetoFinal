@@ -330,22 +330,30 @@ a[data-toggle="collapse"] {
 					<tr>
 						<th>Nome</th>
 						<th>CNH</th>
-						<th align="center">Ações</th>
+						<th>Veículo cadastrado</th>
+						<th>Ações</th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr th:each="motorista : ${motoristaList}">
 						<td th:text="${motorista.name}"></td>
-						<td th:text="${motorista.description}"></td>
-						<td><a th:href="@{/motoristas/update/{id}(id=${motorista.id})}"
-							class="btn btn-primary">Editar</a> <a
+						<td th:text="${motorista.cnh}"></td>
+						<td th:text="${motorista.vehicle?.name}"></td>
+						<td>
+							<a th:href="@{/motoristas/update/{id}(id=${motorista.id})}"
+							class="btn btn-primary">Editar
+							</a> 
+							<a
 							th:href="@{/motoristas/delete/{id}(id=${motorista.id})}"
-							class="btn btn-danger">Deletar</a></td>
+							class="btn btn-danger">Excluir
+							</a>
+						</td>
 				</tbody>
 				<tfoot>
 					<tr>
 						<th>Nome</th>
 						<th>CNH</th>
+						<th>Veículo cadastrado</th>
 						<th>Ações</th>
 					</tr>
 				</tfoot>

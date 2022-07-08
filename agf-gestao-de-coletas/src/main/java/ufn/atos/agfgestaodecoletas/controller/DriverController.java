@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import ufn.atos.agfgestaodecoletas.model.Driver;
+import ufn.atos.agfgestaodecoletas.model.Vehicle;
 import ufn.atos.agfgestaodecoletas.repository.DriverRepository;
 import ufn.atos.agfgestaodecoletas.service.DriverService;
 import ufn.atos.agfgestaodecoletas.service.VehicleService;
@@ -30,7 +31,9 @@ public class DriverController
 	@GetMapping("/list")
 	public String listMotorista(Model model) {
 		List<Driver> driver = service.listAll();
+		List<Vehicle> vehicle = serviceVehicle.listAll();
 		model.addAttribute("motoristaList", driver);
+		model.addAttribute("vehicle", vehicle);
 		return "listmotorista";
 	}
 	

@@ -5,12 +5,15 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -23,7 +26,11 @@ public class Transport
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
-	@ManyToMany(mappedBy = "transport", fetch = FetchType.LAZY)
+	@JoinTable(name = "delivery_transport", joinColumns = {
+			 @JoinColumn(name = "transport_id", referencedColumnName = "id", nullable
+			 = false, updatable = false) }, inverseJoinColumns = {
+			 @JoinColumn(name = "delivery_id", referencedColumnName = "id") })
+	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
 	private Set<Delivery> delivery = new HashSet<>();
 
 	@ManyToOne

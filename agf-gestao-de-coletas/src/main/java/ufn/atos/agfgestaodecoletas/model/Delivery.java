@@ -50,7 +50,6 @@ public class Delivery
 	@Column
 	private int comprimento;
 	
-	
 	@Column(nullable = false)
 	private Date date;
 	
@@ -76,7 +75,7 @@ public class Delivery
 	@ManyToMany(mappedBy = "delivery", fetch = FetchType.LAZY)
 	private Set<PersonLegal> personlegal = new HashSet<>();
 	
-	@ManyToMany(fetch = FetchType.LAZY)
+	@ManyToMany(mappedBy = "delivery", fetch = FetchType.LAZY)
 	private Set<Transport> transport = new HashSet<>();
 	
 	

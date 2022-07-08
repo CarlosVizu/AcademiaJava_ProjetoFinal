@@ -51,8 +51,8 @@ public class TransportController
 	
 	@GetMapping("/new")
 	public String newTransporte(Model model) { 
-		model.addAttribute("transporte", new Transport());
-		model.addAttribute("coleta", deliveryService.listAll());
+		model.addAttribute("transport", new Transport());
+		model.addAttribute("delivery", deliveryService.listAll());
 		model.addAttribute("vehicle", vehicleService.listAll());
 		
 		return "formnewtransporte";		

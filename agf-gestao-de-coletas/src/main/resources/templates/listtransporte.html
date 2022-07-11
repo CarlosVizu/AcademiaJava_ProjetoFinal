@@ -351,36 +351,37 @@ tr.hide-table-padding td {
 						<th>ID</th>
 						<th>Data</th>
 						<th>Hora</th>
-						<th>Status</th>
-						<th>Detalhes do cliente</th>
+						<th>Veículo</th>
+						<th>Total de Itens</th>
+						<th>Detalhes da coleta</th>
 						<th>Ações</th>
 					</tr>
 				</thead>
 				<tbody>
-					<tr th:each="coleta : ${coletaList}" th:id="'coleta' + ${coleta.id}">
+					<tr th:each="transporte : ${transporte}" th:id="'transporte' + ${transporte.id}">
 						
-						<td th:text="${coleta.id}"></td>
-						<td th:text="${#dates.format(coleta.date, 'dd/MM/yyyy')}"></td>
-						<td th:text="${coleta.time}"></td>
-						<td th:text="${coleta.status}"></td>
-						<td>	
-								<table>
-									<tr>
-										<th>Nome do cliente</th>
-										<th>Rota do cliente</th>
-									</tr>
-									<tr th:each="personnatural: ${coleta.personnatural}">
-										<td th:text="${personnatural.name}"></td>
-										<td th:text="${personnatural.route?.name}"></td>
-									</tr>
-								</table>
+						<td th:text="${transporte.id}"></td>
+						<td th:text="${#dates.format(transporte.date, 'dd/MM/yyyy')}"></td>
+						<td th:text="${transporte.time}"></td>
+						<td th:text="${transporte.vehicle?.name}"></td>
+						<td th:text="${transporte.qtyitems}"></td>
+						<td align="center">
+							<div th:each="delivery : ${transporte.delivery}" align="center">
+								<div class="row">
+									<div class="col form-control col-3"
+										th:text="'ID: '+ ${delivery.id}"></div>
+									<div class="col form-control col-3"
+										th:text="${delivery.qtyitems}"></div>
+									<div class="col form-control col-3"
+										th:text="${delivery.status}"></div>
+									<div class="col form-control col-3"
+										th:text="${#dates.format(delivery.date, 'dd/MM/yyyy')}"></div>
+								</div>
+							</div>
 						</td>
-						<!-- <td th:text="${personnatural.cpf}"></td> -->
-						<!-- <td th:text="${delivery.personnatural?.route?.name}"></td>  -->
-						
-						<td><a th:href="@{/coletas/update/{id}(id=${coleta.id})}"
+						<td><a th:href="@{/transporte/update/{id}(id=${transporte.id})}"
 							class="btn btn-primary">Editar</a> <a
-							th:href="@{/coletas/delete/{id}(id=${coleta.id})}"
+							th:href="@{/transporte/delete/{id}(id=${transporte.id})}"
 							class="btn btn-danger">Deletar</a></td>
 					</tr>
 				</tbody>

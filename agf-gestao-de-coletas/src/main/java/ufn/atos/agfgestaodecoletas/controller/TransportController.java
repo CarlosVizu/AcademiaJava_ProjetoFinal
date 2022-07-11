@@ -15,12 +15,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import ufn.atos.agfgestaodecoletas.model.Delivery;
+import ufn.atos.agfgestaodecoletas.model.PersonNatural;
 import ufn.atos.agfgestaodecoletas.model.Transport;
 import ufn.atos.agfgestaodecoletas.model.Vehicle;
 import ufn.atos.agfgestaodecoletas.repository.DeliveryRepository;
 import ufn.atos.agfgestaodecoletas.repository.TransportRepository;
 import ufn.atos.agfgestaodecoletas.repository.VehicleRepository;
 import ufn.atos.agfgestaodecoletas.service.DeliveryService;
+import ufn.atos.agfgestaodecoletas.service.PersonNaturalService;
 import ufn.atos.agfgestaodecoletas.service.TransportService;
 import ufn.atos.agfgestaodecoletas.service.VehicleService;
 
@@ -40,12 +42,18 @@ public class TransportController
 	private VehicleRepository vehicleData;
 	@Autowired
 	private VehicleService vehicleService;
+	@Autowired
+	private PersonNaturalService personnaturalService;
 	
 	
 	@GetMapping("/list")
 	public String listTransporte(Model model) {
 		List<Transport> transport = service.listAll();
-		model.addAttribute("transporteList", transport);
+		model.addAttribute("transporte", transport);
+		model.addAttribute("personnatural", personnaturalService.listAll());
+		model.addAttribute("delivery", deliveryService.listAll());
+		model.addAttribute("vehicle", vehicleService.listAll());
+		
 		return "listtransporte";
 	}
 	

@@ -13,11 +13,17 @@
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
 	integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4"
 	crossorigin="anonymous">
+	
+<link rel="stylesheet"
+	href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
 <!-- Our Custom CSS -->
 
 <!-- Font Awesome JS -->
 
-
+<script defer
+	src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script defer
+	src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
 <script defer
 	src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js"
 	integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ"
@@ -326,7 +332,7 @@ a[data-toggle="collapse"] {
 					Cadastrar Nova - Coleta
 					</h5>
 			</div>
-			<form action="#" th:action="@{/transporte/new}"method="post">
+			<form id="formTransport" name="formtransport" action="#" th:action="@{/transporte/new}" method="post">
 				
 				 <br>
 				
@@ -371,6 +377,92 @@ a[data-toggle="collapse"] {
 					</div>
 				</div>
 				<br>
+
+
+    <table th:field="${transport.delivery}" id="example" class="display bg-light" style="width:100%">
+        <thead>
+						<tr>
+							<th>ID</th>
+							<th>Cliente e Rota</th>
+							<th>Total de itens</th>
+							<th>Data</th>
+							<th>Hora</th>
+							<th>Descrição</th>
+						</tr>
+					</thead>
+        <tbody>
+						<tr th:each="delivery: ${delivery}" th:id="'delivery' + ${delivery.id}">
+							<td th:text="${delivery.id}"></td>
+							<td>
+								<div th:each="personnatural : ${delivery.personnatural}">
+									<div class="row">
+										<div th:text="${personnatural.name}"></div>
+										<div th:text="${personnatural.route?.name}"></div>
+									</div>
+								</div>
+							</td>
+							<td th:text="${delivery.qtyitems}"></td>
+							<td th:text="${delivery.date}"></td>
+							<td th:text="${delivery.time}"></td>
+							<td th:text="${delivery.description}"></td>
+		</tr>
+		</tbody>
+        <tfoot>
+            <tr>
+							<th>ID</th>
+							<th>Cliente e Rota</th>
+							<th>Total de itens</th>
+							<th>Data</th>
+							<th>Hora</th>
+							<th>Descrição</th>
+            </tr>
+        </tfoot>
+    </table>
+
+				
+				<!-- 
+				<table id="example" class="display" style="width: 100%">
+					<thead>
+						<tr>
+							<th>ID</th>
+							<th>Cliente e Rota</th>
+							<th>Total de itens</th>
+							<th>Data</th>
+							<th>Hora</th>
+							<th>Descrição</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="delivery: ${delivery}" th:id="'delivery' + ${delivery.id}">
+							<td th:text="${delivery.id}"></td>
+							<td>
+								<div th:each="personnatural : ${delivery.personnatural}">
+									<div class="row">
+										<div th:text="${personnatural.name}"></div>
+										<div th:text="${personnatural.route?.name}"></div>
+									</div>
+								</div>
+							</td>
+							<td th:text="${delivery.qtyitems}"></td>
+							<td th:text="${delivery.date}"></td>
+							<td th:text="${delivery.time}"></td>
+							<td th:text="${delivery.description}"></td>
+						<tr>
+					</tbody>
+					<tfoot>
+						<tr>
+							<th>ID</th>
+							<th>Cliente e Rota</th>
+							<th>Total de itens</th>
+							<th>Data</th>
+							<th>Hora</th>
+							<th>Descrição</th>
+						</tr>
+					</tfoot>
+				</table>
+				 -->
+
+				<!-- 
 				<div>
 					<label>Cliente</label> 
 					<select th:field="${transport.delivery}" class="custom-select" multiple>
@@ -379,6 +471,9 @@ a[data-toggle="collapse"] {
 					th:text="${delivery.description}" th:value="${delivery.id}" name="id"></option>
 					</select>
 				</div>
+				 -->
+				 
+				 
 				<br><br>
 				
 				<div class="row">
@@ -397,8 +492,10 @@ a[data-toggle="collapse"] {
 
 				<br> 
 				<div align="center">
-					<input type="submit" class="btn btn-primary" value="Salvar" /> <input
-						type="reset" class="btn btn-secondary" value="Limpar" />
+					<button id="button" class="btn btn-primary"/>Salvar
+				</div>
+				<div>
+					<input type="reset" class="btn btn-secondary" value="Limpar" />
 				</div>
 			</form>
 		</div>
@@ -414,6 +511,20 @@ a[data-toggle="collapse"] {
 				$('#sidebar').toggleClass('active');
 			});
 
+		});
+		
+		$(document).ready(function () {
+		    var table = $('#example').DataTable();
+		 
+		    $('#example tbody').on('click', 'tr', function () {
+		        $(this).toggleClass('selected');
+		    });
+		 
+		    $('#button').click(function () {
+		    	document.getElementById("formTransport");
+		        document.getElementById(table.rows('.selected'));
+		        document.formtransport.submit();
+		    });
 		});
 	</script>
 

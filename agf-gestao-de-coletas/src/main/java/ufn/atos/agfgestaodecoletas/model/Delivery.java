@@ -62,7 +62,6 @@ public class Delivery
 	@Column(nullable = false)
 	private String status;
 	
-
 	
 //	@ManyToMany(mappedBy = "delivery", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
 	@JoinTable(name = "personnatural_delivery", joinColumns = {

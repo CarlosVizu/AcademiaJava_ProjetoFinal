@@ -328,18 +328,18 @@ a[data-toggle="collapse"] {
 				style="width: 100%">
 				<thead>
 					<tr>
-						<th>Nome</th>
-						<th>CNH</th>
-						<th>Veículo cadastrado</th>
-						<th>Ações</th>
+						<th class="text-center" style="width: 40%">Nome</th>
+						<th class="text-center" style="width: 22.5%">CNH</th>
+						<th class="text-center" style="width: 22.5%">Veículo cadastrado</th>
+						<th class="text-center" style="width: 15%">Ações</th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr th:each="motorista : ${motoristaList}">
-						<td th:text="${motorista.name}"></td>
-						<td th:text="${motorista.cnh}"></td>
-						<td th:text="${motorista.vehicle?.name}"></td>
-						<td>
+						<td class="text-center"  th:text="${motorista.name}"></td>
+						<td class="text-center"  th:text="${motorista.cnh}"></td>
+						<td class="text-center"  th:text="${motorista.vehicle?.name}"></td>
+						<td class="text-center" >
 							<a th:href="@{/motoristas/update/{id}(id=${motorista.id})}"
 							class="btn btn-primary">Editar
 							</a> 

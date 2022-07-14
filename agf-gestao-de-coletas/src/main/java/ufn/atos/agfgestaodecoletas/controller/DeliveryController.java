@@ -55,6 +55,50 @@ public class DeliveryController
 		return "listcoleta";
 	}
 	
+	@GetMapping("/list/agendado")
+	public String listColetaAgendado(Model model) {
+		List<Delivery> coleta = service.listActive();
+		model.addAttribute("coletaList", coleta);
+		model.addAttribute("personnatural", pessoaFisicaService.listAll());
+		//model.addAttribute("personlegal", pessoaJuridicaService.listAll());
+		model.addAttribute("vehicle", vehicleService.listAll());
+		
+		return "listcoleta";
+	}
+	
+	@GetMapping("/list/rota")
+	public String listColetaEmRota(Model model) {
+		List<Delivery> coleta = service.listEmRota();
+		model.addAttribute("coletaList", coleta);
+		model.addAttribute("personnatural", pessoaFisicaService.listAll());
+		//model.addAttribute("personlegal", pessoaJuridicaService.listAll());
+		model.addAttribute("vehicle", vehicleService.listAll());
+		
+		return "listcoleta";
+	}
+	
+	@GetMapping("/list/cancelado")
+	public String listColetaCancelada(Model model) {
+		List<Delivery> coleta = service.listCancelado();
+		model.addAttribute("coletaList", coleta);
+		model.addAttribute("personnatural", pessoaFisicaService.listAll());
+		//model.addAttribute("personlegal", pessoaJuridicaService.listAll());
+		model.addAttribute("vehicle", vehicleService.listAll());
+		
+		return "listcoleta";
+	}
+	
+	@GetMapping("/list/encerrada")
+	public String listColetaEncerrada(Model model) {
+		List<Delivery> coleta = service.listEncerrado();
+		model.addAttribute("coletaList", coleta);
+		model.addAttribute("personnatural", pessoaFisicaService.listAll());
+		//model.addAttribute("personlegal", pessoaJuridicaService.listAll());
+		model.addAttribute("vehicle", vehicleService.listAll());
+		
+		return "listcoleta";
+	}
+	
 	@GetMapping("/new")
 	public String formColeta(Model model) {
 		model.addAttribute("delivery", new Delivery());
@@ -94,22 +138,21 @@ public class DeliveryController
 	}
 	
 	@PostMapping("/update")
-	public String updateColeta(@RequestParam Integer id, @RequestParam int qtyitems, @RequestParam String description
-			, @RequestParam Float boxsize, @RequestParam Date date, @RequestParam Time time, @RequestParam boolean daily
-			, @RequestParam String status ,@RequestParam String closingdescription) {
+	public String updateColeta(@RequestParam Integer id, @RequestParam int qtyitems, @RequestParam String description,
+			@RequestParam Date date, @RequestParam Time time, @RequestParam String status,
+			@RequestParam String closingdescription) {
 
 		Delivery coleta = data.findById(id).get();
 		
 		coleta.setQtyitems(qtyitems);
 		coleta.setDescription(description);
-		coleta.setVolsize(boxsize);
+		//coleta.setVolsize(boxsize);
 		coleta.setDate(date);
 		coleta.setTime(time);
-		coleta.setDaily(daily);
+		//coleta.setDaily(daily);
 		coleta.setStatus(status);
 		coleta.setClosingdescription(closingdescription);
 		
-
 		data.save(coleta);
 		return "redirect:/coletas/list";
 	}

@@ -18,6 +18,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 @Entity
 @Table(name = "transport")
 public class Transport 
@@ -37,6 +39,7 @@ public class Transport
 	private Vehicle vehicle;
 	
 	@Column(nullable = false)
+	@DateTimeFormat(pattern="dd/MM/yyyy")
 	private Date date;
 	
 	@Column(nullable = false)

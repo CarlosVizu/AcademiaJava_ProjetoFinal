@@ -328,39 +328,27 @@ a[data-toggle="collapse"] {
 				style="width: 100%">
 				<thead>
 					<tr>
-						<th>Nome</th>
-						<th>CPF</th>
-						<th>Função</th>
-						<th align="center">Ações</th>
+						<th class="text-center" style="width: 40%">Nome</th>
+						<th class="text-center" style="width: 30%">CPF</th>
+						<th class="text-center" style="width: 15%">Função</th>
+						<th class="text-center" style="width: 15%">Ações</th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr th:each="analista : ${analistaList}">
-						<td th:text="${analista.name}"></td>
-						<td th:text="${analista.cpf}"></td>
-						<td th:text="${analista.role}"></td>
-						<td><a th:href="@{/analista/update/{id}(id=${analista.id})}"
+						<td class="text-center" th:text="${analista.name}"></td>
+						<td class="text-center" th:text="${analista.cpf}"></td>
+						<td class="text-center" th:text="${analista.role}"></td>
+						<td class="text-center"><a th:href="@{/analista/update/{id}(id=${analista.id})}"
 							class="btn btn-primary">Editar</a> <a
 							th:href="@{/analista/delete/{id}(id=${analista.id})}"
 							class="btn btn-danger">Deletar</a></td>
 				</tbody>
-				<tfoot>
-					<tr>
-						<th>Nome</th>
-						<th>CPF</th>
-						<th>Função</th>
-						<th>Ações</th>
-					</tr>
-				</tfoot>
 			</table>
 
 
 		</div>
 	</div>
-
-
-
-
 
 
 	<script>

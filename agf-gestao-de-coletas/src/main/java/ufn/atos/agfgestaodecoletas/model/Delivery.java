@@ -18,6 +18,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
@@ -51,6 +53,7 @@ public class Delivery
 	private int comprimento;
 	
 	@Column(nullable = false)
+	@DateTimeFormat(pattern="dd/MM/yyyy")
 	private Date date;
 	
 	@Column(nullable = false)

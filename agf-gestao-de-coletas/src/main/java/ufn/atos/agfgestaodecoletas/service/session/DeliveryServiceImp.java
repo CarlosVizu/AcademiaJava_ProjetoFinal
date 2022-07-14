@@ -36,5 +36,18 @@ public class DeliveryServiceImp implements DeliveryService
 		data.deleteById(id);
 	}
 	
+	public List<Delivery> listActive(){
+		return (List<Delivery>)data.deliveryActive();
+	}
+	
+	public List<Delivery> listEmRota(){
+		return (List<Delivery>)data.deliveryEmRota();
+	}
+	public List<Delivery> listEncerrado(){
+		return (List<Delivery>)data.deliveryEncerrado();
+	}
+	public List<Delivery> listCancelado(){
+		return (List<Delivery>)data.deliveryCancelado();
+	}
 }
 

@@ -8,6 +8,7 @@ import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -57,6 +58,19 @@ public class TransportController
 		return "listtransporte";
 	}
 	
+	@GetMapping("/gestao")
+	public String gestaoTransporte(Model model) {
+		//List<Transport> transport = service.listAll();
+		List<Transport> transport = service.listActive();
+		
+		model.addAttribute("transporte", transport);
+		model.addAttribute("personnatural", personnaturalService.listAll());
+		model.addAttribute("coleta", deliveryService.listActive());
+		model.addAttribute("vehicle", vehicleService.listAll());
+		
+		return "gestaotransporte";
+	}
+	
 	@GetMapping("/new")
 	public String newTransporte(Model model) { 
 		model.addAttribute("transport", new Transport());
@@ -68,8 +82,9 @@ public class TransportController
 	
 	@PostMapping("/new")
 	public String saveTransporte(Transport transport, Model model) {
-		
+		;
 		service.save(transport);
+				
 		return "redirect:/transporte/list";
 	}
 	

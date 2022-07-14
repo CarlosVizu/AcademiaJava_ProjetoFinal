@@ -328,30 +328,22 @@ a[data-toggle="collapse"] {
 				style="width: 100%">
 				<thead>
 					<tr>
-						<th>Nome</th>
-						<th>Tipo</th>
-						<th>Volume</th>
-						<th align="center">Ações</th>
+						<th style="width: 40%"class="text-center">Nome</th>
+						<th style="width: 25%"class="text-center">Tipo</th>
+						<th style="width: 20%"class="text-center">Volume</th>
+						<th  style="width: 15%" class="text-center">Ações</th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr th:each="vehicle : ${veiculoList}">
-						<td th:text="${vehicle.name}"></td>
-						<td th:text="${vehicle.type}"></td>
-						<td th:text="${vehicle.volsize}"></td>
-						<td><a th:href="@{/veiculos/update/{id}(id=${vehicle.id})}"
+						<td th:text="${vehicle.name}"  class="text-center"></td>
+						<td th:text="${vehicle.type}" class="text-center"></td>
+						<td th:text="${vehicle.volsize}" class="text-center"></td>
+						<td class="text-center" ><a th:href="@{/veiculos/update/{id}(id=${vehicle.id})}"
 							class="btn btn-primary">Editar</a> <a
 							th:href="@{/veiculos/delete/{id}(id=${vehicle.id})}"
 							class="btn btn-danger">Deletar</a></td>
 				</tbody>
-				<tfoot>
-					<tr>
-						<th>Nome</th>
-						<th>Tipo</th>
-						<th>Volume</th>
-						<th>Ações</th>
-					</tr>
-				</tfoot>
 			</table>
 
 

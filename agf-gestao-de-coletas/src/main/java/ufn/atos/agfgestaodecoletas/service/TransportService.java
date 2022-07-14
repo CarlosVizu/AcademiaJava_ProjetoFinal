@@ -11,4 +11,6 @@ public interface TransportService
 	public Optional<Transport>listId(Integer id);
 	public Transport save(Transport p);
 	public void delete(Integer id);
+	public List<Transport>listActive();
+	
 }

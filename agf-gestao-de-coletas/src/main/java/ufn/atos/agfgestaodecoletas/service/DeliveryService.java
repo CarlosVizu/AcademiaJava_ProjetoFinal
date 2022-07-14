@@ -11,4 +11,8 @@ public interface DeliveryService
 	public Optional<Delivery>listId(Integer id);
 	public Delivery save(Delivery p);
 	public void delete(Integer id);
+	public List<Delivery>listActive();
+	public List<Delivery>listEmRota();
+	public List<Delivery>listEncerrado();
+	public List<Delivery>listCancelado();
 }

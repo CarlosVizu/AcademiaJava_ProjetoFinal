@@ -341,7 +341,7 @@ a[data-toggle="collapse"] {
 							<option th:value="CANCELADO">Cancelado</option>
 						</select>
 					</div>
-				</div>-
+				</div>
 				<br>
 				<div class="row">
 					<div class="col">
@@ -355,13 +355,10 @@ a[data-toggle="collapse"] {
 				
 					<div class="col input-group date" data-provide="datepicker">
 					
-						<input th:text="${#temporals.format(coleta.date, 'dd-MM-yyyy')}"
-						th:field="*{date}" class="form-control"
+						<input th:date="${#dates.format(coleta.date, 'dd/MM/yyyy')}"
+						th:field="${coleta.date}" class="form-control"
 						placeholder="DD/MM/YYYY"
 							onkeypress="$(this).mask('00/00/0000')">
-							<span class="input-group-addon">
-							<span class="glyphicon glyphicon-calendar"/>
-							</span>
 							
 					</div>
 
@@ -369,7 +366,7 @@ a[data-toggle="collapse"] {
 					<div class="col">
 						<div>
 							<select th:field="*{time}" class="form-control">
-								<option value="">Selecione a hora da coleta</option>
+								<option th:text="${coleta.time}" th:value="${coleta.time}"></option>
 								<option value="10:00:00">09:00</option>
 								<option value="10:00:00">10:00</option>
 								<option value="11:00:00">11:00</option>
@@ -384,18 +381,18 @@ a[data-toggle="collapse"] {
 					</div>
 				</div>
 				<br>
-				<div>
-					
+				<!-- 
+				<div th:id="'coleta' + ${coleta.id}">
 					<label>Cliente</label> 
-					<select class="form-control" id="dropDownList">
-					<option value="">Selecione o cliente</option>
-					<option th:each="cliente: ${pessoafisica}" 
-					th:text="${cliente.name}" th:value="${cliente.id}"></option>
-					<option th:each="cliente: ${pessoajuridica}" 
-					th:text="${cliente.name}" th:value="${cliente.id}"></option>
+					<select th:field="*{personnatural}" class="form-control">
+						<option th:text="${personnatural.name}" th:value="${personnatural.id}">Selecione um cliente</option>
+						<option th:each="personnatural: ${personnatural}" 
+						th:text="${personnatural.name}" th:value="${personnatural.id}"></option>
 					</select>
 				</div>
-				<br><br>
+				 -->
+				
+			
 				
 				<div class="row">
 					<div class="col-5">

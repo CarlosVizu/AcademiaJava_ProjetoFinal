@@ -67,6 +67,6 @@ public class RouteController
 
 		
 		data.save(rota);
-		return "redirect:rotas/list";
+		return "redirect:/rotas/list";
 	}
 }

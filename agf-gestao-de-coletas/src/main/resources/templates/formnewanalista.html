@@ -17,6 +17,7 @@
 
 <!-- Font Awesome JS -->
 
+<script type="text/javascript" th:src="@{/static/js/validador.js}"></script>
 
 <script defer
 	src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js"
@@ -324,14 +325,18 @@ a[data-toggle="collapse"] {
 					</h5>
 			</div>
 			<form action="#" th:action="@{/analista/new}" th:object="${analista}"
-				method="post">
+				method="post" class="needs-validation">
 
 
 				<br> <br>
 				<div>
 				<div>
 					<label>Nome</label> <input type="text" class="form-control"
-						th:field="*{name}" placeholder="Nome completo">
+						th:field="*{name}" placeholder="Nome completo" id="validationCustom01"
+						required>
+						<div class="valid-feedback">
+						Ok!
+						</div>
 
 				</div>
 				<br>
@@ -339,9 +344,9 @@ a[data-toggle="collapse"] {
 				<div class="row">
 					<div class="col">
 						<label>CPF</label> <input type="text" th:field="*{cpf}"
-							maxlength="11" class="form-control"
+							maxlength="11" class="form-control is-valid"
 							onkeypress="$(this).mask('000.000.000-00')"
-							placeholder="000.000.000-00">
+							placeholder="000.000.000-00" required>
 
 					</div>
 

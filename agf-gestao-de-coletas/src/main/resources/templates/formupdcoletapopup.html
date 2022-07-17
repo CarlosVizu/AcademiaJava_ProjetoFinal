@@ -1,0 +1,545 @@
+<!DOCTYPE html> 
+<html lang="pt" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1"> 
+
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
+	integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4"
+	crossorigin="anonymous">
+<!-- Our Custom CSS -->
+
+<!-- Font Awesome JS -->
+
+
+<script defer
+	src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js"
+	integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ"
+	crossorigin="anonymous"></script>
+<script defer
+	src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js"
+	integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY"
+	crossorigin="anonymous"></script>
+
+<!-- jQuery CDN - Slim version (=without AJAX) -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+	integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+	crossorigin="anonymous"></script>
+<!-- Popper.JS -->
+
+
+<!-- Bootstrap JS -->
+<script
+	src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"
+	integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm"
+	crossorigin="anonymous"></script>
+
+
+
+<!-- jQuery CDN - Slim version (=without AJAX) -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+	integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+	crossorigin="anonymous"></script>
+<!-- Popper.JS -->
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"
+	integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ"
+	crossorigin="anonymous"></script>
+<!-- Bootstrap JS -->
+
+
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js">
+</script>
+
+
+<style> 
+@charset "UTF-8";
+
+@import
+	"https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
+	
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css");
+
+
+
+@import url("https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css");
+
+@import url("https://use.fontawesome.com/releases/v5.0.13/js/solid.js");
+@import url("https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js");
+@import url("https://code.jquery.com/jquery-3.3.1.slim.min.js");
+@import url("https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js");
+@import url("https://code.jquery.com/jquery-3.3.1.slim.min.js");
+@import url("https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js");
+
+
+
+body {
+	font-family: 'Poppins', sans-serif;
+	background: #e7e7e7;
+}
+
+p {
+	font-family: 'Poppins', sans-serif;
+	font-size: 1.1em;
+	font-weight: 300;
+	line-height: 1.7em;
+	color: #999;
+}
+
+a, a:hover, a:focus {
+	color: inherit;
+	text-decoration: none;
+	transition: all 0.3s;
+}
+
+#sidebar {
+	background: #2D3E40;
+	color: #E4F2E7;
+	transition: all 0.3s;
+	border-bottom-right-radius: 20px;
+}
+
+#sidebar .sidebar-header {
+	padding: 20px;
+	background: #2D3E40;
+}
+
+#sidebar ul.components {
+	padding: 20px 0;
+	border-bottom: 1px solid #E4F2E7;
+}
+
+#sidebar ul p {
+	color: #E4F2E7;
+	padding: 10px;
+}
+
+#sidebar ul li a {
+	padding: 10px;
+	font-size: 1.1em;
+	display: block;
+}
+
+#sidebar ul li a:hover {
+	color: #E4F2E7;
+	background: #387373;
+}
+
+#sidebar ul li.active>a, a[aria-expanded="true"] {
+	color: #E4F2E7;
+	background: #2D3E40;
+}
+
+ul ul a {
+	font-size: 0.9em !important;
+	padding-left: 30px !important;
+	background: #2D3E40;
+}
+
+.wrapper {
+	display: flex;
+	align-items: stretch;
+}
+
+#sidebar {
+	min-width: 250px;
+	max-width: 250px;
+	min-height: 100vh;
+}
+
+#sidebar.active {
+	margin-left: -250px;
+}
+
+a[data-toggle="collapse"] {
+	position: relative;
+}
+
+.dropdown-toggle::after {
+	display: block;
+	position: absolute;
+	top: 50%;
+	right: 20px;
+	transform: translateY(-50%);
+}
+
+@media ( max-width : 768px) {
+	#sidebar {
+		margin-left: -250px;
+	}
+	#sidebar.active {
+		margin-left: 0;
+	}
+}
+
+#navbar {
+	overflow: hidden;
+	background-color: #333;
+}
+
+/* Navbar links */
+#navbar a {
+	float: left;
+	display: block;
+	color: #f2f2f2;
+	text-align: center;
+	padding: 14px;
+	text-decoration: none;
+}
+
+/* Page content */
+.content {
+	padding: 16px;
+}
+
+/* The sticky class is added to the navbar with JS when it reaches its scroll position */
+.sticky {
+	position: fixed;
+	top: 0;
+	width: 100%;
+}
+
+/* Add some top padding to the page content to prevent sudden quick movement (as the navigation bar gets a new position at the top of the page (position:fixed and top:0) */
+.sticky+.content {
+	padding-top: 60px;
+}
+
+.colorprimary {
+	color: rgba(45, 62, 64, 1);
+}
+
+.colorsecondary {
+	color: rgba(56, 115, 115, 1);
+}
+
+.colorthird {
+	color: rgba(147, 191, 183, 1);
+}
+
+.colorfourth {
+	color: rgba(151, 166, 160, 1);
+}
+
+.colorfifth {
+	color: rgba(228, 242, 231, 1);
+}
+
+/* The Modal (background) */ 
+.modal {   
+    display: none; 
+/* Hidden by default */   
+    position: fixed; 
+/* Stay in place */   
+    z-index: 1; 
+/* Sit on top */
+   padding-top: 100px;
+/* Location of the box */
+    left: 0;   top: 0;   width: 100%; 
+/* Full width */   
+    height: 100%; 
+/* Full height */
+    overflow: auto; 
+/* Enable scroll if needed */
+    background-color: rgb(0,0,0); 
+/* Fallback color */
+    background-color: rgba(0,0,0,0.4); 
+/* Black w/ opacity */ 
+}
+
+/* Modal Content */ 
+.modal-content {   
+    background-color: #fefefe;   
+    margin: auto;   
+    padding: 20px;   
+    border: 1px solid #888;   
+    width: 80%; 
+}
+
+/* The Close Button */ 
+.close {   
+    color: #aaaaaa;   
+    float: right;   
+    font-size: 28px;   
+    font-weight: bold; 
+}
+
+.close:hover, .close:focus {   
+    color: #000;   
+    text-decoration: none;   
+    cursor: pointer; 
+} 
+</style> 
+</head>
+
+<div class="h-100 w-50 p-3 mx-auto mt-2 rounded"
+	style="background-color: #97A6A0;">
+
+	<br>
+
+	<div class="text-white bg-dark rounded">
+		<h5 align="center">Atualizar - Coleta</h5>
+	</div>
+	<form action="#" th:action="@{/coletas/update}" th:object="${coleta}"
+		method="post">
+
+		<input type="hidden" th:field="*{id}" /> <br>
+
+		<div class="row">
+			<div class="col-5">
+				<label>Status da coleta</label> <select class="form-control"
+					th:field="*{status}">
+					<option th:value="AGENDADO">Agendado</option>
+					<option th:value="ROTA">Em rota</option>
+					<option th:value="ENCERRADO">Encerrado</option>
+					<option th:value="CANCELADO">Cancelado</option>
+				</select>
+			</div>
+		</div>
+		<br>
+		<div class="row">
+			<div class="col">
+				<label>Data da coleta</label>
+			</div>
+			<div class="col">
+				<label>Hora da coleta</label>
+			</div>
+		</div>
+		<div class="row">
+
+			<div class="col input-group date" data-provide="datepicker">
+
+				<input th:date="${#dates.format(coleta.date, 'dd/MM/yyyy')}"
+					th:field="${coleta.date}" class="form-control"
+					placeholder="DD/MM/YYYY" onkeypress="$(this).mask('00/00/0000')">
+
+			</div>
+
+
+			<div class="col">
+				<div>
+					<select th:field="*{time}" class="form-control">
+						<option th:text="${coleta.time}" th:value="${coleta.time}"></option>
+						<option value="10:00:00">09:00</option>
+						<option value="10:00:00">10:00</option>
+						<option value="11:00:00">11:00</option>
+						<option value="13:00:00">13:00</option>
+						<option value="14:00:00">14:00</option>
+						<option value="15:00:00">15:00</option>
+						<option value="16:00:00">16:00</option>
+						<option value="17:00:00">17:00</option>
+					</select>
+				</div>
+
+			</div>
+		</div>
+		<br>
+		<!-- 
+				<div th:id="'coleta' + ${coleta.id}">
+					<label>Cliente</label> 
+					<select th:field="*{personnatural}" class="form-control">
+						<option th:text="${personnatural.name}" th:value="${personnatural.id}">Selecione um cliente</option>
+						<option th:each="personnatural: ${personnatural}" 
+						th:text="${personnatural.name}" th:value="${personnatural.id}"></option>
+					</select>
+				</div>
+				 -->
+
+
+
+		<div class="row">
+			<div class="col-5">
+				<label>Quantidade de itens</label> <input type="number"
+					class="form-control" placeholder="n° total de itens"
+					th:field="*{qtyitems}">
+			</div>
+			<br>
+			<div class="row container">
+				<div class="col-3">
+					<label>Altura</label> <input type="number" class="form-control"
+						th:field="*{altura}" placeholder="cm">
+				</div>
+				<div class="col-3">
+					<label>Largura</label> <input type="number" class="form-control"
+						th:field="*{largura}" placeholder="cm">
+				</div>
+				<div class="col-3">
+					<label>Comprimento</label> <input type="number"
+						class="form-control" th:field="*{comprimento}" placeholder="cm">
+				</div>
+			</div>
+
+		</div>
+		<br> <br>
+		<div>
+			<div class="form-floating">
+				<label for="floatingTextarea2">Descrição</label>
+				<textarea class="form-control" id="floatingTextarea2"
+					style="height: 100px" th:field="*{description}" maxlength="250"
+					placeholder="Digite observações ou comentários sobre esta coleta"></textarea>
+			</div>
+		</div>
+		<br>
+		<div>
+			<div class="form-floating">
+				<label for="floatingTextarea2">Descrição de
+					Finalização(Opcional)</label>
+				<textarea class="form-control" id="floatingTextarea2"
+					style="height: 100px" th:field="*{closingdescription}"
+					maxlength="250"
+					placeholder="Digite observações ou comentários sobre a finalização desta coleta"></textarea>
+			</div>
+		</div>
+		<div align="center">
+			<input type="submit" class="btn btn-primary" value="Salvar" /> <input
+				type="reset" class="btn btn-secondary" value="Limpar" />
+		</div>
+	</form>
+</div>
+
+
+<button id="myBtn">Open Modal</button>
+
+<!-- The Modal --> 
+<div id="myModal" class="modal">
+
+<!-- Modal content -->   
+<div class="h-auto w-50 p-3 mx-auto mt-2 rounded"
+	style="background-color: #97A6A0;">
+
+	<br>
+
+	<div class="text-white bg-dark rounded">
+		<h5 align="center">Atualizar - Coleta</h5>
+	</div>
+	<form action="#" th:action="@{/coletas/update}" th:object="${coleta}"
+		method="post">
+
+		<input type="hidden" th:field="*{id}" /> <br>
+
+		<div class="row">
+			<div class="col-5">
+				<label>Status da coleta</label> <select class="form-control"
+					th:field="*{status}">
+					<option th:value="AGENDADO">Agendado</option>
+					<option th:value="ROTA">Em rota</option>
+					<option th:value="ENCERRADO">Encerrado</option>
+					<option th:value="CANCELADO">Cancelado</option>
+				</select>
+			</div>
+		</div>
+		<br>
+		<div class="row">
+			<div class="col">
+				<label>Data da coleta</label>
+			</div>
+			<div class="col">
+				<label>Hora da coleta</label>
+			</div>
+		</div>
+		<div class="row">
+
+			<div class="col input-group date" data-provide="datepicker">
+
+				<input th:date="${#dates.format(coleta.date, 'dd/MM/yyyy')}"
+					th:field="${coleta.date}" class="form-control"
+					placeholder="DD/MM/YYYY" onkeypress="$(this).mask('00/00/0000')">
+
+			</div>
+
+
+			<div class="col">
+				<div>
+					<select th:field="*{time}" class="form-control">
+						<option th:text="${coleta.time}" th:value="${coleta.time}"></option>
+						<option value="10:00:00">09:00</option>
+						<option value="10:00:00">10:00</option>
+						<option value="11:00:00">11:00</option>
+						<option value="13:00:00">13:00</option>
+						<option value="14:00:00">14:00</option>
+						<option value="15:00:00">15:00</option>
+						<option value="16:00:00">16:00</option>
+						<option value="17:00:00">17:00</option>
+					</select>
+				</div>
+
+			</div>
+		</div>
+		<br>
+
+
+		<div class="row">
+			<div class="col-5">
+				<label>Quantidade de itens</label> <input type="number"
+					class="form-control" placeholder="n° total de itens"
+					th:field="*{qtyitems}">
+			</div>
+			<br>
+			<div class="row container">
+				<div class="col-3">
+					<label>Altura</label> <input type="number" class="form-control"
+						th:field="*{altura}" placeholder="cm">
+				</div>
+				<div class="col-3">
+					<label>Largura</label> <input type="number" class="form-control"
+						th:field="*{largura}" placeholder="cm">
+				</div>
+				<div class="col-3">
+					<label>Comprimento</label> <input type="number"
+						class="form-control" th:field="*{comprimento}" placeholder="cm">
+				</div>
+			</div>
+
+		</div>
+		<br> <br>
+		<div>
+			<div class="form-floating">
+				<label for="floatingTextarea2">Descrição</label>
+				<textarea class="form-control" id="floatingTextarea2"
+					style="height: 100px" th:field="*{description}" maxlength="250"
+					placeholder="Digite observações ou comentários sobre esta coleta"></textarea>
+			</div>
+		</div>
+		<br>
+		<div>
+			<div class="form-floating">
+				<label for="floatingTextarea2">Descrição de
+					Finalização(Opcional)</label>
+				<textarea class="form-control" id="floatingTextarea2"
+					style="height: 100px" th:field="*{closingdescription}"
+					maxlength="250"
+					placeholder="Digite observações ou comentários sobre a finalização desta coleta"></textarea>
+			</div>
+		</div>
+		<div align="center">
+			<input type="submit" class="btn btn-primary" value="Salvar" /> <input
+				type="reset" class="btn btn-secondary" value="Limpar" />
+		</div>
+	</form>
+</div>
+
+</div>
+
+<script> 
+// Get the modal 
+var modal = document.getElementById("myModal");
+// Get the button that opens the modal 
+var btn = document.getElementById("myBtn");
+// Get the <span> element that closes the modal 
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks the button, open the modal  
+btn.onclick = function() {   modal.style.display = "block"; }
+
+// When the user clicks on <span> (x), close the modal 
+span.onclick = function() {   modal.style.display = "none"; }
+
+// When the user clicks anywhere outside of the modal, close it 
+window.onclick = function(event) {   
+    if (event.target == modal) {
+        modal.style.display = "none";   
+} } 
+</script>
+</body> </html>

@@ -375,7 +375,7 @@ tr.hide-table-padding td {
 								<tr th:each="personnatural: ${coleta.personnatural}">
 									<td th:text="${personnatural.name}"></td>
 									<td th:text="${personnatural.route?.name}"></td>
-									<td th:text="${personnatural.address} + ', N° ' + ${personnatural.number} + ' .'"></td>
+									<td th:text="${personnatural.address} + ', N° ' + ${personnatural.number}"></td>
 								</tr>
 							</table>
 						</td>
@@ -384,7 +384,8 @@ tr.hide-table-padding td {
 						<td class="text-center"><a th:href="@{/coletas/update/{id}(id=${coleta.id})}"
 							class="btn btn-primary">Editar</a> <a
 							th:href="@{/coletas/delete/{id}(id=${coleta.id})}"
-							class="btn btn-danger">Deletar</a></td>
+							class="btn btn-danger">Cancelar</a>
+						</td>
 					</tr>
 				</tbody>
 				<tfoot>

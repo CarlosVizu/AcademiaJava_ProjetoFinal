@@ -362,7 +362,8 @@ a[data-toggle="collapse"] {
 				<h5 align="center">Cadastrar Novo - Transporte</h5>
 			</div>
 			<form id="formTransport" name="formtransport" action="#"
-				th:action="@{/transporte/new}" method="post">
+				th:action="@{/transporte/new}" method="post"
+				class="needs-validation">
 
 				<br>
 
@@ -381,8 +382,8 @@ a[data-toggle="collapse"] {
 						<input
 							th:text="${#temporals.format(transport.date, 'dd-MM-yyyy')}"
 							th:value="${transport.date}" name="date" class="form-control"
-							placeholder="DD/MM/YYYY" onkeypress="$(this).mask('00/00/0000')">
-						<span class="input-group-addon"> <span
+							placeholder="DD/MM/YYYY" onkeypress="$(this).mask('00/00/0000')"
+							required> <span class="input-group-addon"> <span
 							class="glyphicon glyphicon-calendar" />
 						</span>
 
@@ -393,7 +394,7 @@ a[data-toggle="collapse"] {
 						<div>
 							<select th:value="${transport.time}" name="time"
 								class="form-control">
-								<option value="">Selecione a hora da coleta</option>
+								<option value="" disable>Selecione a hora da coleta</option>
 								<option value="09:00:00">09:00</option>
 								<option value="10:00:00">10:00</option>
 								<option value="11:00:00">11:00</option>
@@ -413,7 +414,7 @@ a[data-toggle="collapse"] {
 					<div class="col-5">
 						<label>Veículo</label> <select th:field="${transport.vehicle}"
 							class="form-control">
-							<option value="">Selecione o veículo</option>
+							<option value="" disable>Selecione o veículo</option>
 							<option th:each="vehicle: ${vehicle}" th:text="${vehicle.name}"
 								th:value="${vehicle.id}"></option>
 						</select>
@@ -439,11 +440,10 @@ a[data-toggle="collapse"] {
 					<tbody>
 						<tr th:each="delivery: ${delivery}"
 							th:id="'delivery' + ${delivery.id}">
-							<td>
-								<th:block th:each="delivery: ${delivery}">
-								<input type="checkbox" th:value="${delivery.id}" th:field="${transport.delivery}" checked>
-								</th:block>
-							</td>
+							<td><th:block th:each="delivery: ${delivery}">
+									<input type="checkbox" th:value="${delivery.id}"
+										th:field="${transport.delivery}" checked>
+								</th:block></td>
 							<td th:text="${delivery.id}"></td>
 							<td>
 								<div th:each="personnatural : ${delivery.personnatural}">
@@ -468,49 +468,8 @@ a[data-toggle="collapse"] {
 				</table>
 
 
-				<!-- 
-				<table id="example" class="display" style="width: 100%">
-					<thead>
-						<tr>
-							<th>ID</th>
-							<th>Cliente e Rota</th>
-							<th>Total de itens</th>
-							<th>Data</th>
-							<th>Hora</th>
-							<th>Descrição</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr th:each="delivery: ${delivery}" th:id="'delivery' + ${delivery.id}">
-							<td th:text="${delivery.id}"></td>
-							<td>
-								<div th:each="personnatural : ${delivery.personnatural}">
-									<div class="row">
-										<div th:text="${personnatural.name}"></div>
-										<div th:text="${personnatural.route?.name}"></div>
-									</div>
-								</div>
-							</td>
-							<td th:text="${delivery.qtyitems}"></td>
-							<td th:text="${delivery.date}"></td>
-							<td th:text="${delivery.time}"></td>
-							<td th:text="${delivery.description}"></td>
-						<tr>
-					</tbody>
-					<tfoot>
-						<tr>
-							<th>ID</th>
-							<th>Cliente e Rota</th>
-							<th>Total de itens</th>
-							<th>Data</th>
-							<th>Hora</th>
-							<th>Descrição</th>
-						</tr>
-					</tfoot>
-				</table>
-				 -->
 
-			<!--
+				<!--
 				<div>
 					<label>Cliente</label> 
 					<select th:field="${transport.delivery}" class="custom-select" multiple>
@@ -519,7 +478,7 @@ a[data-toggle="collapse"] {
 					th:text="${delivery.description}" th:value="${delivery.id}" name="id"></option>
 					</select>
 				</div>
-  -->	
+  -->
 
 				<br> <br>
 

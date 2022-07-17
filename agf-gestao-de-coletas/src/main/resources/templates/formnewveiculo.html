@@ -327,13 +327,13 @@ a[data-toggle="collapse"] {
 					</h5>
 			</div>
 			<form action="#" th:action="@{/veiculos/new}"
-				th:object="${veiculo}" method="post">
+				th:object="${veiculo}" method="post" class="needs-validation">
 
 				<input type="hidden" th:field="*{id}" /> <br>
 				
 				<div>
 					<label>Nome</label> <input type="text" class="form-control"
-						th:field="*{name}" placeholder="Nome do veículo">
+						th:field="*{name}" placeholder="Nome do veículo" required>
 				</div>
 				<br>
 
@@ -341,7 +341,7 @@ a[data-toggle="collapse"] {
 					<div class="col">
 						<label>Volume máximo de carga</label> <input type="number" th:field="*{volsize}"
 							maxlength="11" class="form-control" 
-							placeholder="Realizar cálculo: 00cm(Altura) * 00cm(Largura) * 00cm(Comprimento) = cm³ ">
+							placeholder="Realizar cálculo: 00cm(Altura) * 00cm(Largura) * 00cm(Comprimento) = cm³ " required>
 					</div>
 
 				</div>

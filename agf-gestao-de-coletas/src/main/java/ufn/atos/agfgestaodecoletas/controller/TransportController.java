@@ -82,9 +82,12 @@ public class TransportController
 	
 	@PostMapping("/new")
 	public String saveTransporte(Transport transport, Model model) {
-		;
 		service.save(transport);
-				
+		for (Delivery delivery : transport.getDelivery()) {
+			delivery.setStatus("ROTA");
+			deliveryData.save(delivery);
+		}
+		
 		return "redirect:/transporte/list";
 	}
 	
@@ -98,17 +101,16 @@ public class TransportController
 	@GetMapping("/update/{id}")
 	public String formUpdateTransporte(@PathVariable (value="id") Integer id, Model model) {
 		Transport transport = data.getById(id);
-		model.addAttribute("transporte", transport);
-		model.addAttribute("coleta", deliveryService.listAll());
-		model.addAttribute("veiculo", vehicleService.listAll());
+		model.addAttribute("transport", transport);
+		model.addAttribute("delivery", deliveryService.listAll());
+		model.addAttribute("vehicle", vehicleService.listAll());
 		return "formupdtransporte";
 		
 	}
 	
 	@PostMapping("/update")
 	public String updateTransporte(@RequestParam Integer id, @RequestParam Set<Delivery> delivery,
-			@RequestParam Vehicle vehicle, @RequestParam Date date, @RequestParam Time time,
-			@RequestParam Float volsize, @RequestParam Integer qtyitems) {
+			@RequestParam Vehicle vehicle, @RequestParam Date date, @RequestParam Time time) {
 		
 		Transport transport = data.findById(id).get();
 		
@@ -116,8 +118,8 @@ public class TransportController
 		transport.setVehicle(vehicle);
 		transport.setDate(date);
 		transport.setTime(time);
-		transport.setVolsize(volsize);
-		transport.setQtyitems(qtyitems);
+		//transport.setVolsize(volsize);
+		//transport.setQtyitems(qtyitems);
 		
 		data.save(transport);
 		return "redirect:/transporte/list";

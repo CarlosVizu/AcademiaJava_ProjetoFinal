@@ -13,10 +13,29 @@
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
 	integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4"
 	crossorigin="anonymous">
+
+<link rel="stylesheet"
+	href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
+
+<link rel="stylesheet"
+	href="https://cdn.datatables.net/select/1.4.0/css/select.dataTables.min.css">
+
+<link rel="stylesheet"
+	href="https://cdn.datatables.net/buttons/2.2.3/css/buttons.dataTables.min.css">
+
 <!-- Our Custom CSS -->
 
 <!-- Font Awesome JS -->
 
+<script defer src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script defer
+	src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+
+<script defer
+	src="https://cdn.datatables.net/select/1.4.0/js/dataTables.select.min.js"></script>
+
+<script defer
+	src="https://cdn.datatables.net/buttons/2.2.3/js/dataTables.buttons.min.js"></script>
 
 <script defer
 	src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js"
@@ -64,21 +83,31 @@
 
 @import
 	"https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
-	
-@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css");
 
+@import
+	url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css")
+	;
 
-
-@import url("https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css");
+@import
+	url("https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css")
+	;
 
 @import url("https://use.fontawesome.com/releases/v5.0.13/js/solid.js");
-@import url("https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js");
-@import url("https://code.jquery.com/jquery-3.3.1.slim.min.js");
-@import url("https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js");
-@import url("https://code.jquery.com/jquery-3.3.1.slim.min.js");
-@import url("https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js");
 
+@import
+	url("https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js");
 
+@import url("https://code.jquery.com/jquery-3.3.1.slim.min.js");
+
+@import
+	url("https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js")
+	;
+
+@import url("https://code.jquery.com/jquery-3.3.1.slim.min.js");
+
+@import
+	url("https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js")
+	;
 
 body {
 	font-family: 'Poppins', sans-serif;
@@ -231,6 +260,15 @@ a[data-toggle="collapse"] {
 	color: rgba(228, 242, 231, 1);
 }
 
+#events {
+	margin-bottom: 1em;
+	padding: 1em;
+	background-color: #f6f6f6;
+	border: 1px solid #999;
+	border-radius: 3px;
+	height: 100px;
+	overflow: auto;
+}
 </style>
 
 </head>
@@ -308,11 +346,10 @@ a[data-toggle="collapse"] {
 
 				</ul>
 			</nav>
-		
+
 		</div>
-		<br>
-		<br>
-		
+		<br> <br>
+
 		<!--  a partir daqui vai a configuração da página de acordo com a função. -->
 
 
@@ -322,44 +359,174 @@ a[data-toggle="collapse"] {
 			<br>
 
 			<div class="text-white bg-dark rounded">
-				<h5 align="center">
-					Cadastrar Nova - Rota
-					</h5>
+				<h5 align="center">Cadastrar Novo - Transporte</h5>
 			</div>
-			<form action="#" th:action="@{/rotas/new}"
-				th:object="${rota}" method="post" class="needs-validation">
-				
-				 <br>
-
-				<div>
-				<div>
-					<label>Nome da rota</label> <input type="text" class="form-control"
-						th:field="*{name}" placeholder="Exemplo: Rota - Zona Sul" required>
-				</div>
-				</div>
-				<br>
+			<form id="formTransport" name="formtransport" action="#"
+				th:action="@{/transporte/update}" method="post" class="needs-validation">
+				<br> <input type="hidden" th:field="${transport.id}" />
 
 
-				<br>
-				<div>
-					<div class="form-floating">
-						<label for="floatingTextarea2">Descrição (Opcional)</label>
-						<textarea class="form-control" id="floatingTextarea2" style="height: 100px"
-						th:field="*{description}" maxlength="250" 
-						placeholder="Descrição/Observações em relação a esta rota." required></textarea>
+				<div class="row">
+					<div class="col">
+						<label>Data do transporte</label>
+					</div>
+					<div class="col">
+						<label>Hora do transporte</label>
 					</div>
 				</div>
-				<br> 
-				<div align="center">
-					<input type="submit" class="btn btn-primary" value="Salvar" /> <input
-						type="reset" class="btn btn-secondary" value="Limpar" />
+				<div class="row">
+
+					<div class="col input-group date" data-provide="datepicker">
+
+						<input th:date="${#dates.format(transport.date, 'dd-MM-yyyy')}"
+							th:field="${transport.date}" class="form-control"
+							onkeypress="$(this).mask('00/00/0000')" required>
+					</div>
+
+
+					<div class="col">
+						<div>
+							<select th:value="*{time}" name="time" class="form-control">
+								<option th:text="${transport.time}"></option>
+								<option value="09:00:00">09:00</option>
+								<option value="10:00:00">10:00</option>
+								<option value="11:00:00">11:00</option>
+								<option value="13:00:00">13:00</option>
+								<option value="14:00:00">14:00</option>
+								<option value="15:00:00">15:00</option>
+								<option value="16:00:00">16:00</option>
+								<option value="17:00:00">17:00</option>
+							</select>
+						</div>
+
+					</div>
 				</div>
+				<br>
+
+				<div class="row">
+					<div class="col-5">
+						<label>Veículo</label> <select th:field="${transport.vehicle}"
+							class="form-control">
+							<option value="">Selecione o veículo</option>
+							<option th:each="vehicle: ${vehicle}" th:text="${vehicle.name}"
+								th:value="${vehicle.id}"></option>
+						</select>
+					</div>
+				</div>
+				<br>
+
+
+				<table th:field="${transport.delivery}" id="example"
+					class="display bg-light" style="width: 100%">
+					<thead>
+						<tr>
+							<th></th>
+							<th>ID</th>
+							<th>Cliente</th>
+							<th>Rota</th>
+							<th>Total de itens</th>
+							<th>Data</th>
+							<th>Hora</th>
+							<th>Descrição</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="delivery: ${delivery}"
+							th:id="'delivery' + ${delivery.id}">
+							<td><th:block th:each="delivery: ${delivery}">
+									<input type="checkbox" th:value="${delivery.id}"
+										th:field="${transport.delivery}" checked>
+								</th:block></td>
+							<td th:text="${delivery.id}"></td>
+							<td>
+								<div th:each="personnatural : ${delivery.personnatural}">
+									<div class="row">
+										<div th:text="${personnatural.name}"></div>
+									</div>
+								</div>
+							</td>
+							<td>
+								<div th:each="personnatural : ${delivery.personnatural}">
+									<div class="row">
+										<div th:text="${personnatural.route?.name}"></div>
+									</div>
+								</div>
+							</td>
+							<td th:text="${delivery.qtyitems}"></td>
+							<td th:text="${#dates.format(delivery.date, 'dd/MM/yyyy')}"></td>
+							<td th:text="${delivery.time}"></td>
+							<td th:text="${delivery.description}"></td>
+						</tr>
+					</tbody>
+				</table>
+
+
+				<!-- 
+				<table id="example" class="display" style="width: 100%">
+					<thead>
+						<tr>
+							<th>ID</th>
+							<th>Cliente e Rota</th>
+							<th>Total de itens</th>
+							<th>Data</th>
+							<th>Hora</th>
+							<th>Descrição</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="delivery: ${delivery}" th:id="'delivery' + ${delivery.id}">
+							<td th:text="${delivery.id}"></td>
+							<td>
+								<div th:each="personnatural : ${delivery.personnatural}">
+									<div class="row">
+										<div th:text="${personnatural.name}"></div>
+										<div th:text="${personnatural.route?.name}"></div>
+									</div>
+								</div>
+							</td>
+							<td th:text="${delivery.qtyitems}"></td>
+							<td th:text="${delivery.date}"></td>
+							<td th:text="${delivery.time}"></td>
+							<td th:text="${delivery.description}"></td>
+						<tr>
+					</tbody>
+					<tfoot>
+						<tr>
+							<th>ID</th>
+							<th>Cliente e Rota</th>
+							<th>Total de itens</th>
+							<th>Data</th>
+							<th>Hora</th>
+							<th>Descrição</th>
+						</tr>
+					</tfoot>
+				</table>
+				 -->
+
+				<!--
+				<div>
+					<label>Cliente</label> 
+					<select th:field="${transport.delivery}" class="custom-select" multiple>
+						<option value="">Selecione a coleta</option>
+						<option th:each="delivery: ${delivery}" 
+					th:text="${delivery.description}" th:value="${delivery.id}" name="id"></option>
+					</select>
+				</div>
+  -->
+
+				<br> <br>
+
+				<div class="row" align="center">
+					<input type="submit" class="btn btn-primary" value="Salvar" /> <br>
+					<input type="reset" class="btn btn-secondary" value="Limpar" />
+				</div>
+
 			</form>
 		</div>
 	</div>
 
 
-		<!-- TÉRMINO DA CONFIGURAÇÃO DA PÁGINA, abaixo segue o script de expandir a sidebar -->
+	<!-- TÉRMINO DA CONFIGURAÇÃO DA PÁGINA, abaixo segue o script de expandir a sidebar -->
 
 	<script>
 		$(document).ready(function() {
@@ -369,6 +536,12 @@ a[data-toggle="collapse"] {
 			});
 
 		});
+		
+		$(document).ready(function () {
+		    $('#example').DataTable();
+		});
+
+
 	</script>
 
 </body>

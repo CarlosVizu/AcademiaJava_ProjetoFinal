@@ -339,8 +339,12 @@ a[data-toggle="collapse"] {
 						<td class="text-center" th:text="${analista.name}"></td>
 						<td class="text-center" th:text="${analista.cpf}"></td>
 						<td class="text-center" th:text="${analista.role}"></td>
-						<td class="text-center"><a th:href="@{/analista/update/{id}(id=${analista.id})}"
-							class="btn btn-primary">Editar</a> <a
+						<td class="text-center">
+						
+						<a th:href="@{/analista/update/{id}(id=${analista.id})}"
+							class="btn btn-primary">Editar</a> 
+							
+							<a
 							th:href="@{/analista/delete/{id}(id=${analista.id})}"
 							class="btn btn-danger">Deletar</a></td>
 				</tbody>
@@ -365,6 +369,8 @@ a[data-toggle="collapse"] {
 	    $('#example').DataTable();
 	});
 	</script>
+	
+	
 
 </body>
 </html>

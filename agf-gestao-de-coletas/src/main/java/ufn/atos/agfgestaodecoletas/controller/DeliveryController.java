@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -123,8 +124,11 @@ public class DeliveryController
 	}
 	
 	@GetMapping("/delete/{id}")
-	public String deleteColeta(@PathVariable (value="id") Integer id) {
-		data.deleteById(id);
+	public String deleteColeta(Integer id) {
+		Delivery delivery = data.getById(id);
+		delivery.setStatus("CANCELADO");
+		
+		data.save(delivery);
 		return "redirect:/coletas/list";
 	}
 	
@@ -135,6 +139,15 @@ public class DeliveryController
 		model.addAttribute("pessoafisica", pessoaFisicaService.listAll());
 		model.addAttribute("pessoajuridica", pessoaJuridicaService.listAll());
 		return "formupdcoleta";
+	}
+	
+	@GetMapping("/update/popup/{id}")
+	public String formUpdateColetaPopup(@PathVariable (value="id") Integer id, Model model) {
+		Delivery coleta = data.getById(id);
+		model.addAttribute("coleta", coleta);
+		model.addAttribute("pessoafisica", pessoaFisicaService.listAll());
+		model.addAttribute("pessoajuridica", pessoaJuridicaService.listAll());
+		return "formupdcoletapopup";
 	}
 	
 	@PostMapping("/update")
@@ -156,4 +169,6 @@ public class DeliveryController
 		data.save(coleta);
 		return "redirect:/coletas/list";
 	}
+	
+
 }

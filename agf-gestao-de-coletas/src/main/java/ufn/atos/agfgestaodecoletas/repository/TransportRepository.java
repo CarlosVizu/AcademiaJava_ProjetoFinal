@@ -12,8 +12,7 @@ import ufn.atos.agfgestaodecoletas.model.Transport;
 public interface TransportRepository extends JpaRepository<Transport, Integer>{
 
 	
-	@Query(value = 
-	"select distinct a.* from transport as a inner join delivery as b on (a.id = a.id) where b.status like \"ROTA\"", 
+	@Query(value= "select t.* from transport as t join delivery_transport as dt on t.id = dt.transport_id join delivery as d on d.id = dt.delivery_id where d.status like \"ROTA\" group by t.id;",
 	nativeQuery = true)
 	List<Transport> transportActive();
 	

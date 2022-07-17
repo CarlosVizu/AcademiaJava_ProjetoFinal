@@ -9,6 +9,9 @@
 <title>Gestão de Coleta</title>
 
 
+
+
+
 <link rel="stylesheet" href="style.css">
 
 
@@ -318,12 +321,12 @@ a[data-toggle="collapse"] {
 					</h5>
 			</div>
 			<form action="#" th:action="@{/analista/update}"
-				th:object="${analista}" method="post">
+				th:object="${analista}" method="post" class="needs-validation">
 
 				<input type="hidden" th:field="*{id}" /> <br> <br>
 				<div>
 					<label>Nome</label> <input type="text" class="form-control"
-						th:field="*{name}">
+						th:field="*{name}" required>
 
 				</div>
 				<br>
@@ -332,7 +335,7 @@ a[data-toggle="collapse"] {
 					<div class="col">
 						<label>CPF</label> <input type="text" th:field="*{cpf}"
 							maxlength="11" class="form-control"
-							onkeypress="$(this).mask('000.000.000-00')">
+							onkeypress="$(this).mask('000.000.000-00')" required>
 
 					</div>
 

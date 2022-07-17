@@ -74,6 +74,6 @@ public class VehicleController
 		
 		
 		data.save(veiculo);
-		return "redirect:veiculos/list";
+		return "redirect:/veiculos/list";
 	}
 }

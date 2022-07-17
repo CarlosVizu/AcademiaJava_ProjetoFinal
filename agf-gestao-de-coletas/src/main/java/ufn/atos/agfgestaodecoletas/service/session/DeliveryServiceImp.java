@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import ufn.atos.agfgestaodecoletas.model.Delivery;
+import ufn.atos.agfgestaodecoletas.model.Transport;
 import ufn.atos.agfgestaodecoletas.repository.DeliveryRepository;
 import ufn.atos.agfgestaodecoletas.service.DeliveryService;
 
@@ -49,5 +50,7 @@ public class DeliveryServiceImp implements DeliveryService
 	public List<Delivery> listCancelado(){
 		return (List<Delivery>)data.deliveryCancelado();
 	}
+	
+
 }
 

@@ -64,21 +64,31 @@
 
 @import
 	"https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
-	
-@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css");
 
+@import
+	url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css")
+	;
 
-
-@import url("https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css");
+@import
+	url("https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css")
+	;
 
 @import url("https://use.fontawesome.com/releases/v5.0.13/js/solid.js");
-@import url("https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js");
-@import url("https://code.jquery.com/jquery-3.3.1.slim.min.js");
-@import url("https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js");
-@import url("https://code.jquery.com/jquery-3.3.1.slim.min.js");
-@import url("https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js");
 
+@import
+	url("https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js");
 
+@import url("https://code.jquery.com/jquery-3.3.1.slim.min.js");
+
+@import
+	url("https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js")
+	;
+
+@import url("https://code.jquery.com/jquery-3.3.1.slim.min.js");
+
+@import
+	url("https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js")
+	;
 
 body {
 	font-family: 'Poppins', sans-serif;
@@ -230,7 +240,6 @@ a[data-toggle="collapse"] {
 .colorfifth {
 	color: rgba(228, 242, 231, 1);
 }
-
 </style>
 
 </head>
@@ -308,11 +317,10 @@ a[data-toggle="collapse"] {
 
 				</ul>
 			</nav>
-		
+
 		</div>
-		<br>
-		<br>
-		
+		<br> <br>
+
 		<!--  a partir daqui vai a configuração da página de acordo com a função. -->
 
 
@@ -322,14 +330,13 @@ a[data-toggle="collapse"] {
 			<br>
 
 			<div class="text-white bg-dark rounded">
-				<h5 align="center">
-					Cadastrar Nova - Coleta
-					</h5>
+				<h5 align="center">Cadastrar Nova - Coleta</h5>
 			</div>
-			<form action="#" th:object="${delivery}" th:action="@{/coletas/new}" method="post">
-				
-				 <br>
-				
+			<form action="#" th:object="${delivery}" th:action="@{/coletas/new}"
+				method="post" class="needs-validation">
+
+				<br>
+
 				<div class="row">
 					<div class="col">
 						<label>Data da coleta</label>
@@ -339,23 +346,23 @@ a[data-toggle="collapse"] {
 					</div>
 				</div>
 				<div class="row">
-				
+
 					<div class="col input-group date" data-provide="datepicker">
-					
+
 						<input th:text="${#temporals.format(delivery.date, 'dd-MM-yyyy')}"
-						th:value="${delivery.date}" name="date" class="form-control"
-						placeholder="DD/MM/YYYY"
-							onkeypress="$(this).mask('00/00/0000')">
-							<span class="input-group-addon">
-							<span class="glyphicon glyphicon-calendar"/>
-							</span>
-							
+							th:value="${delivery.date}" name="date" class="form-control"
+							placeholder="DD/MM/YYYY" onkeypress="$(this).mask('00/00/0000')" required>
+						<span class="input-group-addon"> <span
+							class="glyphicon glyphicon-calendar" />
+						</span>
+
 					</div>
 
 
 					<div class="col">
 						<div>
-							<select th:value="${delivery.time}" name = "time" class="form-control">
+							<select th:value="${delivery.time}" name="time"
+								class="form-control">
 								<option value="">Selecione a hora da coleta</option>
 								<option value="09:00:00">09:00</option>
 								<option value="10:00:00">10:00</option>
@@ -372,54 +379,52 @@ a[data-toggle="collapse"] {
 				</div>
 				<br>
 				<div>
-					<label>Cliente</label> 
-					<select th:field="*{personnatural}" class="form-control">
+					<label>Cliente</label> <select th:field="*{personnatural}"
+						class="form-control">
 						<option value="">Selecione um cliente</option>
-						<option th:each="personnatural: ${personnatural}" 
-						th:text="${personnatural.name}" th:value="${personnatural.id}"></option>
+						<option th:each="personnatural: ${personnatural}"
+							th:text="${personnatural.name}" th:value="${personnatural.id}"></option>
 					</select>
 				</div>
-				
-				<br><br>
-				
+
+				<br>
+				<br>
+
 				<div class="row">
 					<div class="col-5">
-						<label>Quantidade de itens</label>
-						<input type="number" class="form-control" 
-							placeholder="n° total de itens" th:value="${delivery.qtyitems}" name = "qtyitems">
+						<label>Quantidade de itens</label> <input type="number"
+							class="form-control" placeholder="n° total de itens"
+							th:value="${delivery.qtyitems}" name="qtyitems" required>
 					</div>
 					<br>
 					<div class="row container">
 						<div class="col-3">
-							<label>Altura</label>
-							<input type="number" class="form-control"
-							th:value="${delivery.altura}" placeholder="cm" name = "altura">
+							<label>Altura</label> <input type="number" class="form-control"
+								th:value="${delivery.altura}" placeholder="cm" name="altura" required>
 						</div>
 						<div class="col-3">
-							<label>Largura</label>
-							<input type="number" class="form-control"
-							th:value="${delivery.largura}" placeholder="cm" name = "largura">
+							<label>Largura</label> <input type="number" class="form-control"
+								th:value="${delivery.largura}" placeholder="cm" name="largura" required>
 						</div>
 						<div class="col-3">
-							<label>Comprimento</label>
-							<input type="number" class="form-control"
-							th:value="${delivery.comprimento}" placeholder="cm" name = "comprimento">
+							<label>Comprimento</label> <input type="number"
+								class="form-control" th:value="${delivery.comprimento}"
+								placeholder="cm" name="comprimento" required>
 						</div>
 					</div>
 
 				</div>
-				<br>
-
-				<br>
+				<br> <br>
 				<div>
 					<div class="form-floating">
 						<label for="floatingTextarea2">Descrição (Opcional)</label>
-						<textarea class="form-control" id="floatingTextarea2" style="height: 100px"
-						th:value="${delivery.description}" name = "description" maxlength="250" 
-						placeholder="Digite observações ou comentários sobre esta coleta"></textarea>
+						<textarea class="form-control" id="floatingTextarea2"
+							style="height: 100px" th:value="${delivery.description}"
+							name="description" maxlength="250"
+							placeholder="Digite observações ou comentários sobre esta coleta"></textarea>
 					</div>
 				</div>
-				<br> 
+				<br>
 				<div align="center">
 					<input type="submit" class="btn btn-primary" value="Salvar" /> <input
 						type="reset" class="btn btn-secondary" value="Limpar" />
@@ -429,7 +434,7 @@ a[data-toggle="collapse"] {
 	</div>
 
 
-		<!-- TÉRMINO DA CONFIGURAÇÃO DA PÁGINA, abaixo segue o script de expandir a sidebar -->
+	<!-- TÉRMINO DA CONFIGURAÇÃO DA PÁGINA, abaixo segue o script de expandir a sidebar -->
 
 	<script>
 		$(document).ready(function() {

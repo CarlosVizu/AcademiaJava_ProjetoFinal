@@ -3,7 +3,10 @@ package ufn.atos.agfgestaodecoletas.service;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.data.repository.query.Param;
+
 import ufn.atos.agfgestaodecoletas.model.Delivery;
+import ufn.atos.agfgestaodecoletas.model.Transport;
 
 public interface DeliveryService 
 {
@@ -15,4 +18,5 @@ public interface DeliveryService
 	public List<Delivery>listEmRota();
 	public List<Delivery>listEncerrado();
 	public List<Delivery>listCancelado();
+
 }

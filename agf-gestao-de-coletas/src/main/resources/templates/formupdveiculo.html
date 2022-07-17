@@ -9,7 +9,6 @@
 <title>Gestão de Coleta</title>
 
 
-<link rel="stylesheet" href="style.css">
 
 
 <link rel="stylesheet"
@@ -60,21 +59,31 @@
 
 @import
 	"https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
-	
-@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css");
 
+@import
+	url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css")
+	;
 
-
-@import url("https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css");
+@import
+	url("https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css")
+	;
 
 @import url("https://use.fontawesome.com/releases/v5.0.13/js/solid.js");
-@import url("https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js");
-@import url("https://code.jquery.com/jquery-3.3.1.slim.min.js");
-@import url("https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js");
-@import url("https://code.jquery.com/jquery-3.3.1.slim.min.js");
-@import url("https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js");
 
+@import
+	url("https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js");
 
+@import url("https://code.jquery.com/jquery-3.3.1.slim.min.js");
+
+@import
+	url("https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js")
+	;
+
+@import url("https://code.jquery.com/jquery-3.3.1.slim.min.js");
+
+@import
+	url("https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js")
+	;
 
 body {
 	font-family: 'Poppins', sans-serif;
@@ -226,7 +235,6 @@ a[data-toggle="collapse"] {
 .colorfifth {
 	color: rgba(228, 242, 231, 1);
 }
-
 </style>
 
 </head>
@@ -313,26 +321,25 @@ a[data-toggle="collapse"] {
 			<br>
 
 			<div class="text-white bg-dark rounded">
-				<h5 align="center">
-					Editar - Veículo
-					</h5>
+				<h5 align="center">Editar - Veículo</h5>
 			</div>
-			<form th:action="@{/veiculos/update}"
-				th:object="${veiculo}" method="post">
+			<form th:action="@{/veiculos/update}" th:object="${veiculo}"
+				method="post" class="needs-validation">
 
 				<input type="hidden" th:field="*{id}" /> <br>
-				
+
 				<div>
 					<label>Nome</label> <input type="text" class="form-control"
-						th:field="*{name}" placeholder="Nome do veículo">
+						th:field="*{name}" th:text="${veiculo.name}"
+						placeholder="Nome do veículo" required>
 				</div>
 				<br>
 
 				<div class="row">
 					<div class="col">
-						<label>Volume máximo de carga</label> <input type="number" th:field="*{cnh}"
-							maxlength="11" class="form-control" 
-							placeholder="Realizar cálculo: 00cm(Altura) * 00cm(Largura) * 00cm(Comprimento) = cm³ ">
+						<label>Volume máximo de carga</label> <input type="number"
+							th:field="*{volsize}" maxlength="11" class="form-control"
+							placeholder="Realizar cálculo: 00cm(Altura) * 00cm(Largura) * 00cm(Comprimento) = cm³ " required>
 					</div>
 
 				</div>
@@ -340,26 +347,16 @@ a[data-toggle="collapse"] {
 				<br>
 				<div class="row">
 					<div class="col-5">
-						<label>Tipo do veículo</label> 
-						<select class="form-control" type="text" th:field="*{type}">
+						<label>Tipo do veículo</label> <select class="form-control"
+							type="text" th:field="*{type}">
 							<option value="">Selecione um tipo de veículo</option>
 							<option value="MOTO-CAIXA">Moto com caixa</option>
 							<option value="MOTO-REBOQUE">Moto com reboque</option>
 							<option value="UTILITARIO">Carro Utilitário</option>
 						</select>
 					</div>
-					<div class="col-5">
-						<label>Selecione o motorista</label> 
-						<select th:field="*{driver}"
-							class="form-control">
-							<option value="">Selecione o motorista atual</option>
-							<option th:each="driver: ${motoristaList}" th:text="${driver.name}"
-								th:value="${driver.id}"></option>
-						</select>
-					</div>
 				</div>
-				<br>
-				<br> 
+				<br> <br>
 				<div align="center">
 					<input type="submit" class="btn btn-primary" value="Salvar" /> <input
 						type="reset" class="btn btn-secondary" value="Limpar" />
@@ -367,7 +364,6 @@ a[data-toggle="collapse"] {
 			</form>
 		</div>
 	</div>
-
 
 
 	<script>

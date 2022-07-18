@@ -40,8 +40,6 @@ public class TransportController
 	@Autowired
 	private DeliveryService deliveryService;
 	@Autowired
-	private VehicleRepository vehicleData;
-	@Autowired
 	private VehicleService vehicleService;
 	@Autowired
 	private PersonNaturalService personnaturalService;
@@ -51,7 +49,6 @@ public class TransportController
 	public String listTransporte(Model model) {
 		List<Transport> transport = service.listAll();
 		model.addAttribute("transporte", transport);
-		model.addAttribute("personnatural", personnaturalService.listAll());
 		model.addAttribute("delivery", deliveryService.listAll());
 		model.addAttribute("vehicle", vehicleService.listAll());
 		
@@ -65,16 +62,23 @@ public class TransportController
 		
 		model.addAttribute("transporte", transport);
 		model.addAttribute("personnatural", personnaturalService.listAll());
+		model.addAttribute("personlegal", personnaturalService.listAll());
 		model.addAttribute("coleta", deliveryService.listActive());
 		model.addAttribute("vehicle", vehicleService.listAll());
 		
 		return "gestaotransporte";
 	}
 	
+	@GetMapping("/gestao/home")
+	public String gestaoHome(Model model) {
+		
+		return "index";
+	}
+	
 	@GetMapping("/new")
 	public String newTransporte(Model model) { 
 		model.addAttribute("transport", new Transport());
-		model.addAttribute("delivery", deliveryService.listAll());
+		model.addAttribute("delivery", deliveryService.listActive());
 		model.addAttribute("vehicle", vehicleService.listAll());
 		
 		return "formnewtransporte";		
@@ -82,11 +86,14 @@ public class TransportController
 	
 	@PostMapping("/new")
 	public String saveTransporte(Transport transport, Model model) {
-		service.save(transport);
+		int qtyitemsvar = 0;
 		for (Delivery delivery : transport.getDelivery()) {
 			delivery.setStatus("ROTA");
+			qtyitemsvar = delivery.getQtyitems() + qtyitemsvar;
 			deliveryData.save(delivery);
 		}
+		transport.setQtyitems(qtyitemsvar);
+		service.save(transport);
 		
 		return "redirect:/transporte/list";
 	}

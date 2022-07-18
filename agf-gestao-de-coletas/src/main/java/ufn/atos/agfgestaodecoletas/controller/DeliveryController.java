@@ -50,7 +50,7 @@ public class DeliveryController
 		List<Delivery> coleta = service.listAll();
 		model.addAttribute("coletaList", coleta);
 		model.addAttribute("personnatural", pessoaFisicaService.listAll());
-		//model.addAttribute("personlegal", pessoaJuridicaService.listAll());
+		model.addAttribute("personlegal", pessoaJuridicaService.listAll());
 		model.addAttribute("vehicle", vehicleService.listAll());
 		
 		return "listcoleta";
@@ -61,7 +61,7 @@ public class DeliveryController
 		List<Delivery> coleta = service.listActive();
 		model.addAttribute("coletaList", coleta);
 		model.addAttribute("personnatural", pessoaFisicaService.listAll());
-		//model.addAttribute("personlegal", pessoaJuridicaService.listAll());
+		model.addAttribute("personlegal", pessoaJuridicaService.listAll());
 		model.addAttribute("vehicle", vehicleService.listAll());
 		
 		return "listcoleta";
@@ -72,7 +72,7 @@ public class DeliveryController
 		List<Delivery> coleta = service.listEmRota();
 		model.addAttribute("coletaList", coleta);
 		model.addAttribute("personnatural", pessoaFisicaService.listAll());
-		//model.addAttribute("personlegal", pessoaJuridicaService.listAll());
+		model.addAttribute("personlegal", pessoaJuridicaService.listAll());
 		model.addAttribute("vehicle", vehicleService.listAll());
 		
 		return "listcoleta";
@@ -83,7 +83,7 @@ public class DeliveryController
 		List<Delivery> coleta = service.listCancelado();
 		model.addAttribute("coletaList", coleta);
 		model.addAttribute("personnatural", pessoaFisicaService.listAll());
-		//model.addAttribute("personlegal", pessoaJuridicaService.listAll());
+		model.addAttribute("personlegal", pessoaJuridicaService.listAll());
 		model.addAttribute("vehicle", vehicleService.listAll());
 		
 		return "listcoleta";
@@ -94,7 +94,7 @@ public class DeliveryController
 		List<Delivery> coleta = service.listEncerrado();
 		model.addAttribute("coletaList", coleta);
 		model.addAttribute("personnatural", pessoaFisicaService.listAll());
-		//model.addAttribute("personlegal", pessoaJuridicaService.listAll());
+		model.addAttribute("personlegal", pessoaJuridicaService.listAll());
 		model.addAttribute("vehicle", vehicleService.listAll());
 		
 		return "listcoleta";
@@ -113,10 +113,8 @@ public class DeliveryController
 	@PostMapping("/new")
 	public String saveColeta(Delivery coleta, Model model) {
 		coleta.setStatus("AGENDADO");
-		
-		//PersonNatural pf = pessoaFisicaRepository.findById(id).get();
-		//Delivery d = data.findById(coleta.getId()).get();
-		//pf.getDeliveries().add(d);
+		int volsize = ((coleta.getAltura() * coleta.getComprimento() * coleta.getLargura()) * coleta.getQtyitems());
+		coleta.setVolsize(Float.intBitsToFloat(volsize));
 		
 		
 		service.save(coleta);
@@ -159,12 +157,13 @@ public class DeliveryController
 		
 		coleta.setQtyitems(qtyitems);
 		coleta.setDescription(description);
-		//coleta.setVolsize(boxsize);
 		coleta.setDate(date);
 		coleta.setTime(time);
 		//coleta.setDaily(daily);
 		coleta.setStatus(status);
 		coleta.setClosingdescription(closingdescription);
+		int volsize = ((coleta.getAltura() * coleta.getComprimento() * coleta.getLargura()) * coleta.getQtyitems());
+		coleta.setVolsize(Float.intBitsToFloat(volsize));
 		
 		data.save(coleta);
 		return "redirect:/coletas/list";

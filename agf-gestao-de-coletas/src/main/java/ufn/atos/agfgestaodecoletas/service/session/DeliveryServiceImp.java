@@ -27,10 +27,8 @@ public class DeliveryServiceImp implements DeliveryService
 	}
 	
 	public Delivery save(Delivery p) {
-		
 		Delivery Delivery = data.save(p);
 		return Delivery;
-		
 	}
 	
 	public void delete(Integer id) { 

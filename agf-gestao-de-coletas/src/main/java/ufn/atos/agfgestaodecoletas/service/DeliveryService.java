@@ -18,5 +18,4 @@ public interface DeliveryService
 	public List<Delivery>listEmRota();
 	public List<Delivery>listEncerrado();
 	public List<Delivery>listCancelado();
-
 }

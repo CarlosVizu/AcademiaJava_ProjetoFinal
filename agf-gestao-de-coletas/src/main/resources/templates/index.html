@@ -20,6 +20,11 @@
 
 <!-- Font Awesome JS -->
 
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js" integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css" integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
+
+
 <script type="text/javascript" src="../static/main.js" th:src="@{/main.js}"></script>
 
 <script defer src="https://code.jquery.com/jquery-3.5.1.js"></script>
@@ -326,6 +331,73 @@ a[data-toggle="collapse"] {
 		<div class="h-100 w-100 p-3 mx-auto mt-2 rounded"
 			style="background-color: #97A6A0;">
 
+
+<div class="card">
+  <h5 class="card-header">Bem vindo ao Gestão de Coletas!</h5>
+  <div class="card-body">
+    <h5 class="card-title">Através do menu lateral, navegue até a tela desejada.</h5>
+    <p class="card-text">Utilize a navegação principal entre os botões "Novo Transporte"; "Nova Coleta"; "Gerenciar Coletas"</p>
+  </div>
+</div>
+
+  <br>
+  <br>
+  
+  <div class="row">
+  <div class="col-12 col-xl-8 mb-4 mb-lg-0">
+      <div class="card">
+          <h5 class="card-header">Ultimas coletas registradas</h5>
+          <div class="card-body">
+              <div class="table-responsive">
+                  <table class="table">
+                      <thead>
+					<tr>
+						<th style="width: 5%" class="text-center">ID</th>
+						<th style="width: 7%" class="text-center">Data</th>
+						<th style="width: 7%" class="text-center">Hora</th>
+						<th style="width: 8%" class="text-center">Qtd Itens</th>
+						<th style="width: 50%" class="text-center">Detalhes do cliente</th>
+						<th style="width: 8%" class="text-center">Status</th>
+					</tr>
+                      </thead>
+                      <tbody>
+                      <tr th:each="coleta : ${coletaList}"
+						th:id="'coleta' + ${coleta.id}">
+						<td th:text="${coleta.id}"  class="text-center"></td>
+						<td th:text="${#dates.format(coleta.date, 'dd/MM/yyyy')}"  class="text-center"></td>
+						<td th:text="${coleta.time}" class="text-center"></td>
+						<td th:text="${coleta.qtyitems}" class="text-center"></td>
+						<td class="d-flex justify-content-center">
+							<table>
+								<tr>
+									<th style="width: 50%"  class="text-center">Nome do cliente</th>
+									<th style="width: 15%" class="text-center">Rota</th>
+									<th style="width: 35%"  class="text-center">Endereço</th>
+								</tr>
+								<tr th:each="personnatural: ${coleta.personnatural}">
+									<td th:text="${personnatural.name}"></td>
+									<td th:text="${personnatural.route?.name}"></td>
+									<td th:text="${personnatural.address} + ', N° ' + ${personnatural.number}"></td>
+								</tr>
+								<tr th:each="personlegal: ${coleta.personlegal}">
+									<td th:text="${personlegal.name}"></td>
+									<td th:text="${personlegal.route?.name}"></td>
+									<td th:text="${personlegal.address} + ', N° ' + ${personlegal.number}"></td>
+								</tr>
+							</table>
+						</td>
+						<td th:text="${coleta.status}"></td>
+                        </tr>
+                      </tbody>
+                    </table>
+              </div>
+          </div>
+      </div>
+  </div>
+  <div class="col-12 col-xl-4">
+      <!-- Another widget will go here -->
+  </div>
+</div>
 
 		</div>
 

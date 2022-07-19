@@ -18,6 +18,7 @@ import javax.persistence.Table;
 @Table(name = "vehicle")
 public class Vehicle 
 {
+	//Classe referente ao veículo, que é utilizado para realizar o transporte das coletas.
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,15 +32,7 @@ public class Vehicle
 	
 	@Column(nullable = false)
 	private Float volsize;
-	
-	//@OneToOne
-	//private Driver driver;
-	
-	//@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	//private List<PersonDeliveryRoute> personDeliveryRoute;
-	
-	
-	
+
 	
 	public Vehicle() {
 

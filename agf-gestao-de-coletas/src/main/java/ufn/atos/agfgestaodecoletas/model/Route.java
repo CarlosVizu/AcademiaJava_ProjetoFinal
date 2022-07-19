@@ -18,6 +18,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Table(name = "route")
 public class Route 
 {
+	//Rota para melhor controle do cadastro dos clientes, diferenciando assim as regiões e facilitando a organização do transporte.
+	
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,19 +31,6 @@ public class Route
 	@Column
 	private String description;
 	
-//	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, targetEntity = PersonNatural.class)
-//	@JoinColumn(name = "personnatural_id")
-//	private PersonNatural personNatural;
-//	
-//	@ManyToOne(fetch = FetchType.LAZY,  cascade = CascadeType.ALL, targetEntity = PersonLegal.class)
-//	@JoinColumn(name = "personlegal_id")
-//	private PersonLegal personLegal;
-//	
-	/*
-	 * @OneToMany(mappedBy = "persondeliveryroute", fetch = FetchType.LAZY, cascade
-	 * = CascadeType.ALL, targetEntity = PersonDeliveryRoute.class) private
-	 * PersonDeliveryRoute personDeliveryRoute;
-	 */
 	
 
 	public Route() {

@@ -23,6 +23,7 @@ import ufn.atos.agfgestaodecoletas.repository.DeliveryRepository;
 import ufn.atos.agfgestaodecoletas.repository.TransportRepository;
 import ufn.atos.agfgestaodecoletas.repository.VehicleRepository;
 import ufn.atos.agfgestaodecoletas.service.DeliveryService;
+import ufn.atos.agfgestaodecoletas.service.PersonLegalService;
 import ufn.atos.agfgestaodecoletas.service.PersonNaturalService;
 import ufn.atos.agfgestaodecoletas.service.TransportService;
 import ufn.atos.agfgestaodecoletas.service.VehicleService;
@@ -43,7 +44,10 @@ public class TransportController
 	private VehicleService vehicleService;
 	@Autowired
 	private PersonNaturalService personnaturalService;
+	@Autowired
+	private PersonLegalService personlegalService;
 	
+	//CRUD Padrão com a listagem do usuário
 	
 	@GetMapping("/list")
 	public String listTransporte(Model model) {
@@ -55,6 +59,7 @@ public class TransportController
 		return "listtransporte";
 	}
 	
+	//Detalhe neste caso, em que a listagem da coleta é apenas para coletas em ROTA.
 	@GetMapping("/gestao")
 	public String gestaoTransporte(Model model) {
 		//List<Transport> transport = service.listAll();
@@ -71,9 +76,15 @@ public class TransportController
 	
 	@GetMapping("/gestao/home")
 	public String gestaoHome(Model model) {
+		List<Delivery> coleta = deliveryService.listAll();
+		model.addAttribute("coletaList", coleta);
+		model.addAttribute("personnatural", personnaturalService.listAll());
+		model.addAttribute("personlegal", personlegalService.listAll());
+		model.addAttribute("vehicle", vehicleService.listAll());
 		
 		return "index";
 	}
+	
 	
 	@GetMapping("/new")
 	public String newTransporte(Model model) { 
@@ -83,6 +94,9 @@ public class TransportController
 		
 		return "formnewtransporte";		
 	}
+	
+	
+	//Além de salvar o novo transporte esta tela coloca o status da coleta como "ROTA" e em seguida adiciona o total de itens na quantidade total do transporte. 
 	
 	@PostMapping("/new")
 	public String saveTransporte(Transport transport, Model model) {
@@ -97,6 +111,7 @@ public class TransportController
 		
 		return "redirect:/transporte/list";
 	}
+	
 	
 	@GetMapping("/delete/{id}")
 	public String deleteTransporte(@PathVariable (value="id") Integer id) {
@@ -115,6 +130,7 @@ public class TransportController
 		
 	}
 	
+	//Atualização e também comentário dentro do Volume para futuros implementos.
 	@PostMapping("/update")
 	public String updateTransporte(@RequestParam Integer id, @RequestParam Set<Delivery> delivery,
 			@RequestParam Vehicle vehicle, @RequestParam Date date, @RequestParam Time time) {

@@ -39,12 +39,9 @@ public class DeliveryController
 	@Autowired
 	private PersonLegalService pessoaJuridicaService;
 	@Autowired
-	private PersonNaturalRepository pessoaFisicaRepository;
-	@Autowired
-	private PersonLegalRepository pessoaJuridicaRepository;
-	@Autowired
 	private VehicleService vehicleService;
 	
+	//Listagem para visualização das coletas, tendo como variável as coletas com diversos status.
 	@GetMapping("/list")
 	public String listColeta(Model model) {
 		List<Delivery> coleta = service.listAll();
@@ -56,6 +53,7 @@ public class DeliveryController
 		return "listcoleta";
 	}
 	
+	//Status da coleta como AGENDADO. 
 	@GetMapping("/list/agendado")
 	public String listColetaAgendado(Model model) {
 		List<Delivery> coleta = service.listActive();
@@ -66,7 +64,7 @@ public class DeliveryController
 		
 		return "listcoleta";
 	}
-	
+	//Status da coleta como EM ROTA. 
 	@GetMapping("/list/rota")
 	public String listColetaEmRota(Model model) {
 		List<Delivery> coleta = service.listEmRota();
@@ -77,7 +75,7 @@ public class DeliveryController
 		
 		return "listcoleta";
 	}
-	
+	//Status da coleta como CANCELADO. 
 	@GetMapping("/list/cancelado")
 	public String listColetaCancelada(Model model) {
 		List<Delivery> coleta = service.listCancelado();
@@ -88,7 +86,7 @@ public class DeliveryController
 		
 		return "listcoleta";
 	}
-	
+	//Status da coleta como ENCERRADO. 
 	@GetMapping("/list/encerrada")
 	public String listColetaEncerrada(Model model) {
 		List<Delivery> coleta = service.listEncerrado();
@@ -139,14 +137,6 @@ public class DeliveryController
 		return "formupdcoleta";
 	}
 	
-	@GetMapping("/update/popup/{id}")
-	public String formUpdateColetaPopup(@PathVariable (value="id") Integer id, Model model) {
-		Delivery coleta = data.getById(id);
-		model.addAttribute("coleta", coleta);
-		model.addAttribute("pessoafisica", pessoaFisicaService.listAll());
-		model.addAttribute("pessoajuridica", pessoaJuridicaService.listAll());
-		return "formupdcoletapopup";
-	}
 	
 	@PostMapping("/update")
 	public String updateColeta(@RequestParam Integer id, @RequestParam int qtyitems, @RequestParam String description,

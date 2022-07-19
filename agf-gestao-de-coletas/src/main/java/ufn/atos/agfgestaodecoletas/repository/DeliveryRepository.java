@@ -11,6 +11,10 @@ import ufn.atos.agfgestaodecoletas.model.Delivery;
 
 public interface DeliveryRepository extends JpaRepository<Delivery, Integer>{
 	
+	
+	//Querys diretamente do mySQL para retornar status das coletas. 
+	
+	
 	@Query(value = 
 	"select * from delivery where status like \"AGENDADO\";", 
 	nativeQuery = true)

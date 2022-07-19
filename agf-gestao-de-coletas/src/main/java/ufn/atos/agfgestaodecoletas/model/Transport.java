@@ -24,6 +24,10 @@ import org.springframework.format.annotation.DateTimeFormat;
 @Table(name = "transport")
 public class Transport 
 {
+	
+	//Classe de transporte da coleta dos materiais, utilizada para vincular todas as coletas e também ao motorista/veículo. 
+	
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;

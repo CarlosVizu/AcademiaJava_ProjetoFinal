@@ -21,6 +21,9 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "personlegal")
 public class PersonLegal {
+	
+	//Classe de pessoa jurídica para cadastro dos clientes, possível melhoria é implementar herança entre as classes (PersonNatural.class & PersonLegal.class)
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;

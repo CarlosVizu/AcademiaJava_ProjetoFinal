@@ -20,6 +20,8 @@ import javax.persistence.Table;
 @Table(name = "personnatural")
 public class PersonNatural 
 {
+	//Classe de pessoa física, possível melhoria será implementar herança entre os clientes (PersonNatural.class & PersonLegal.class)
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;

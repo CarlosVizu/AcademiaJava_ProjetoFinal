@@ -29,6 +29,9 @@ public class VehicleController
 	@Autowired
 	private DriverService driverService;
 	
+	//CRUD Padrão, adicionando também a listagem do usuário.
+	
+	
 	@GetMapping("/list")
 	public String listVeiculo(Model model) {
 		List<Vehicle> vehicle = service.listAll();

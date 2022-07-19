@@ -9,6 +9,7 @@ O sistema de Gestão de Coletas realizado a partir do curso de Academia de Java 
 PREVIEW: 
 
 
+![image](https://user-images.githubusercontent.com/94651752/179861726-efd3f223-a527-4f04-b646-a25f868302e9.png)
 
 
 https://user-images.githubusercontent.com/94651752/179647641-b9c630e3-73e0-47bc-a429-7c3dd2403a6a.mp4
@@ -25,3 +26,4 @@ https://user-images.githubusercontent.com/94651752/179647652-bfbf2bbf-5a21-4d07-
 ![screen4](https://user-images.githubusercontent.com/94651752/179651563-c8809a12-6a71-4392-9d61-f4f7d964d23f.png)
 ![screen5](https://user-images.githubusercontent.com/94651752/179651565-b4cd0e23-2172-4eb5-8910-aae0915f2dfa.png)
 ![screen6](https://user-images.githubusercontent.com/94651752/179651575-c50c3c28-7d49-4b23-a737-f05017d35789.png)
+

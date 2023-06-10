@@ -1,6 +1,6 @@
 Gestão de Coletas
 
-O sistema de Gestão de Coletas realizado a partir do curso de Academia de Java ministrada pela Universidade Franciscana(UFN) & Atos tem por objetivo fornecer uma aplicação Web desenvolvida em Java, utilizando ferramentas como:
+O sistema de Gestão de Coletas realizado a partir do curso de Academia de Java ministrada pela Universidade Franciscana(UFN) & Atos tem por objetivo fornecer uma aplicação Web desenvolvida em Java para empresas que realizam coletas de produtos como projeto de Extensão à comunidade.
 
 - Spring Data JPA 
 - Thymeleaf
